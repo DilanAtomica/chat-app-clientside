@@ -1,0 +1,72 @@
+.inputContainer {
+    margin-bottom: 1rem;
+    width: 18rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.inputContainer > .inputFieldContainer {
+    height: 2.5rem;
+    border-radius: 100px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 1.25rem;
+}
+
+.inputContainer > .inputFieldContainer > #avatarIcon,
+.inputContainer > .inputFieldContainer > #lockIcon {
+    margin-left: 0.75rem;
+    position: absolute;
+}
+
+.inputContainer > label {
+    margin-bottom: 0.5rem;
+}
+
+.inputContainer > .inputFieldContainer > input {
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    border: none;
+    font-size: 0.9rem;
+    padding: 0 2rem 0 2rem;
+}
+
+.inputContainer > .errorMsgContainer {
+    position: absolute;
+    top: 5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputContainer > .errorMsgContainer .errorMsg {
+    color: #F7BE61;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.inputContainer #alertIcon {
+    margin-right: 0.5rem;
+}
+
+
+.inputContainer > .inputFieldContainer >  button {
+    position: absolute;
+    right: 0.5rem;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+
+}
