@@ -9,6 +9,7 @@ import Background from "../../components/Layout/Background";
 import {useRegister} from "./hooks/api";
 import {validationSchema} from "./validationSchema";
 import {ValidationSchema} from "./validationSchema";
+import useLoadingScreen from "../../stores/Loading";
 
 function Register() {
 
@@ -27,10 +28,13 @@ function Register() {
 
     const {mutateAsync: registerUser, isLoading} = useRegister();
     const navigate = useNavigate();
+    const {activateLoadingScreen, deActivateLoadingScreen} = useLoadingScreen();
 
     const handleOnRegister = async(inputData: ValidationSchema) => {
         try {
+            activateLoadingScreen();
             await registerUser(inputData);
+            deActivateLoadingScreen();
             navigate("/home");
 
         } catch(error: any) {

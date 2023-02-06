@@ -9,6 +9,7 @@ import Background from "../../components/Layout/Background";
 import {useLogin} from "./hooks/api";
 import {validationSchema} from "./validationSchema";
 import {ValidationSchema} from "./validationSchema";
+import useLoadingScreen from "../../stores/Loading";
 
 function Login() {
 
@@ -27,11 +28,14 @@ function Login() {
 
     const {isLoading, mutateAsync: login} = useLogin();
 
+    const {activateLoadingScreen, deActivateLoadingScreen} = useLoadingScreen();
     const navigate = useNavigate();
 
     const handleOnLogin = async(inputData: ValidationSchema) => {
         try {
+            activateLoadingScreen();
             await login(inputData);
+            deActivateLoadingScreen();
             navigate("/home");
         } catch(error: any) {
             if(error.response.data.errorType === "noEmail") {
