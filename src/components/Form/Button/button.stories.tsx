@@ -9,6 +9,7 @@ export default {
 type buttonProps = {
     children: ReactNode;
     buttonType: "button" | "submit";
+    disabled: boolean,
 }
 
 const Template = (args: buttonProps) => <Button {...args}>{args.children}</Button>
@@ -20,10 +21,12 @@ export const Register = Template.bind({})
 Login.args = {
     children: "Login",
     buttonType: "submit",
+    disabled: false,
 }
 
 // @ts-ignore
 Register.args = {
     children: "Register",
     buttonType: "submit",
+    disabled: false,
 }

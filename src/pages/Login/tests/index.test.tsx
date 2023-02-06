@@ -24,6 +24,13 @@ describe("Login Page", () => {
         const showPasswordBtn = screen.getByRole("showPasswordBtn");
         expect(showPasswordBtn).toBeInTheDocument();
         fireEvent.click(showPasswordBtn);
-        expect(passwordInput).toHaveAttribute("type", "text")
-    })
+        expect(passwordInput).toHaveAttribute("type", "text");
+    });
+
+    it("Button should be enabled", () => {
+        render(<MockLoginPage />);
+        const submitBtn = screen.getByRole("submitBtn");
+        expect(submitBtn).toBeInTheDocument();
+        expect(submitBtn).not.toHaveAttribute("disabled");
+    });
 });

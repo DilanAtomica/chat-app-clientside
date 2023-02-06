@@ -38,5 +38,12 @@ describe("Register Page", () => {
         expect(showConfirmPasswordBtn).toBeInTheDocument();
         fireEvent.click(showConfirmPasswordBtn);
         expect(confirmPasswordInput).toHaveAttribute("type", "text")
-    })
+    });
+
+    it("Button should be enabled", () => {
+        render(<MockRegisterPage />);
+        const submitBtn = screen.getByRole("submitBtn");
+        expect(submitBtn).toBeInTheDocument();
+        expect(submitBtn).not.toHaveAttribute("disabled");
+    });
 });
