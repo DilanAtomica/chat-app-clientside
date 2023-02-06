@@ -13,6 +13,7 @@ import {ValidationSchema} from "./validationSchema";
 function Login() {
 
     const {
+        setError,
         register,
         handleSubmit,
         formState: { errors },
@@ -32,8 +33,15 @@ function Login() {
         try {
             await login(inputData);
             navigate("/home");
-        } catch(error) {
-            console.log(error);
+        } catch(error: any) {
+            if(error.response.data.errorType === "noEmail") {
+                setError("email", {type: "404", message: error.response.data.message});
+            }
+            else if(error.response.data.errorType === "wrongComb") {
+                setError("email", {type: "404", message: error.response.data.message});
+                setError("password", {type: "404", message: error.response.data.message});
+            }
+
         }
     };
 
