@@ -4,11 +4,12 @@ import "./index.css";
 type buttonProps = {
     children: ReactNode,
     buttonType: "button" | "submit",
+    disabled: boolean,
 }
 
-function Button({children, buttonType} : buttonProps) {
+function Button({children, buttonType, disabled} : buttonProps) {
     return (
-        <button id="button" type={buttonType}>{children}</button>
+        <button disabled={disabled} id="button" type={buttonType}>{children}</button>
     );
 }
 
