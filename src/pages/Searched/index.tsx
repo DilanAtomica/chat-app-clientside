@@ -36,6 +36,20 @@ function SearchedPage() {
         const pageNumber = e.currentTarget.innerHTML;
         navigate("/search/" + searchWord + "/" + pageNumber);
         window.location.reload();
+    };
+
+    const onNextPrevClick = (e: React.MouseEvent<HTMLElement>) => {
+        console.log(e.currentTarget.id);
+        if(page) {
+            if(e.currentTarget.id === "prevBtn"){
+                navigate("/search/" + searchWord + "/" + (parseInt(page) - 1));
+                window.location.reload();
+            }
+            else if(e.currentTarget.id === "nextBtn") {
+                navigate("/search/" + searchWord + "/" + (parseInt(page) + 1));
+                window.location.reload();
+            }
+        }
     }
 
     return (
@@ -50,12 +64,16 @@ function SearchedPage() {
             </form>
 
             <div className="pagination">
-                {pages && page && parseInt(page) !== 1 && <button type="button" className="backForthBtn">Prev</button>}
+                {pages && page && parseInt(page) !== 1 &&
+                    <button onClick={onNextPrevClick} type="button" id="prevBtn" className="backForthBtn">Prev</button>}
+
                 {pages && pages.map(pageIndex => (
                     <button onClick={onPageClick} style={{backgroundColor: page && pageIndex === parseInt(page) ? "black" : "#0F62FE"}}
                             type="button" key={pageIndex} className="pageNumber">{pageIndex}</button>
+
                 ))}
-                {pages && page && parseInt(page) !== data?.total_pages && <button type="button" className="backForthBtn">Next</button>}
+                {pages && page && parseInt(page) !== data?.total_pages &&
+                    <button onClick={onNextPrevClick} id="nextBtn" type="button" className="backForthBtn">Next</button>}
             </div>
 
 
