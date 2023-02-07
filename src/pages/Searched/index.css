@@ -32,6 +32,7 @@
     color: white;
     transition: 0.2s;
     margin-right: 0.5rem;
+    border: none;
 }
 
 .backForthBtn {
@@ -46,6 +47,7 @@
     align-items: center;
     border-radius: 100px;
     transition: 0.2s;
+    border: none;
 }
 
 .pagination > .pageNumber:hover, .pagination > .backForthBtn:hover {

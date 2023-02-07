@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./index.css";
 import Navbar from "../../components/Navbar";
 import {useNavigate, useParams} from "react-router-dom";
@@ -15,27 +15,28 @@ function SearchedPage() {
     const navigate = useNavigate();
 
     const [inputValue, setInputValue] = useState("");
+    const [pages, setPages] = useState<number[] | null>(null);
 
     const onSubmit = () => {
         navigate("/search/" + inputValue + "/" + 1);
     };
 
-    const getPages = () => {
+    useEffect(() => {
         if(page) {
             const currentPage = parseInt(page);
-            let pages: number[] = [currentPage - 12, currentPage - 1, currentPage, currentPage + 1, currentPage + 2, + currentPage +3];
-
+            let pages: number[] = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2, + currentPage +3];
             pages = pages.filter(page => page > 0);
-            pages = pages.filter(page => page < data?.total_pages);
-
-            //if(pages[0] !== currentPage) pages.unshift("Prev");
-            //if(pages[pages.length + 1] !== data?.total_pages) pages.push("Next");
-            console.log(pages);
-            return pages;
+            pages = pages.filter(page => page <= data?.total_pages);
+            setPages(pages);
+            console.log("Useffect: SearchedPage");
         }
-    };
+    }, [data]);
 
-    const pages = getPages()
+    const onPageClick = (e: React.MouseEvent<HTMLElement>) => {
+        const pageNumber = e.currentTarget.innerHTML;
+        navigate("/search/" + searchWord + "/" + pageNumber);
+        window.location.reload();
+    }
 
     return (
         <main className="searchedPage">
@@ -49,16 +50,17 @@ function SearchedPage() {
             </form>
 
             <div className="pagination">
-                {pages && page && parseInt(page) !== 1 && <div className="backForthBtn">Prev</div>}
-                {pages && pages.map(page => (
-                    <div key={page} className="pageNumber">{page}</div>
+                {pages && page && parseInt(page) !== 1 && <button type="button" className="backForthBtn">Prev</button>}
+                {pages && pages.map(pageIndex => (
+                    <button onClick={onPageClick} style={{backgroundColor: page && pageIndex === parseInt(page) ? "black" : "#0F62FE"}}
+                            type="button" key={pageIndex} className="pageNumber">{pageIndex}</button>
                 ))}
-                {pages && page && parseInt(page) !== data?.total_pages && <div className="backForthBtn">Next</div>}
+                {pages && page && parseInt(page) !== data?.total_pages && <button type="button" className="backForthBtn">Next</button>}
             </div>
 
 
             <div className="movies">
-                {data?.results.map((movie: any) => (
+                {data?.results.map((movie: { id: number, poster: string, name: string, poster_path: string }) => (
                     <Poster key={movie.id} id={movie.id} poster={movie.poster_path} name={movie.name} />
                 ))}
             </div>
