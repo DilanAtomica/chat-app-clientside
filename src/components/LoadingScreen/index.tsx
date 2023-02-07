@@ -6,7 +6,7 @@ function LoadingScreen() {
     return (
         <div className="loadingScreen">
             <BeatLoader
-                color="#0F62FE" size={30}
+                color="#0F62FE" size={20}
             />
         </div>
     );

@@ -52,14 +52,15 @@ function Register() {
             <Background />
             <form>
                 <h1>Register</h1>
-                <InputField label="Email" errorMsg={errors.email?.message} register={register} />
-                <InputField label="Username" errorMsg={errors.username?.message} register={register} />
-                <InputField label="Password" errorMsg={errors.password?.message} register={register} showPassword={showPassword}
+                <p>*Required field</p>
+                <InputField obligated={true} label="Email" errorMsg={errors.email?.message} register={register} />
+                <InputField obligated={true} label="Username" errorMsg={errors.username?.message} register={register} />
+                <InputField obligated={true} label="Password" errorMsg={errors.password?.message} register={register} showPassword={showPassword}
                             setShowPassword={setShowPassword}/>
-                <InputField label="Confirm Password" errorMsg={errors.confirmPassword?.message} register={register} showPassword={showPassword}
+                <InputField obligated={true} label="Confirm Password" errorMsg={errors.confirmPassword?.message} register={register} showPassword={showPassword}
                             setShowPassword={setShowPassword} />
 
-                <Button disabled={isLoading} buttonType={"submit"}>Sign Up</Button>
+                <Button width={"15.5rem"} disabled={isLoading} buttonType={"submit"}>Sign Up</Button>
                 <Link to="/login">Already have an account?</Link>
             </form>
 

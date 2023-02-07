@@ -1,9 +1,8 @@
 .register {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
     background-color: #0A1628;
 }
 
@@ -11,16 +10,22 @@
     background-color: white;
     border-radius: 15px;
     width: 22.5rem;
-    height: 39rem;
+    height: max-content;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     display: flex;
     align-items: center;
     flex-direction: column;
     z-index: 5;
+    padding: 1rem 0;
+    margin-top: 1rem;
 }
 
 .register > form > h1 {
     color: black;
-    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.register > form > p {
+    color: black;
     margin-bottom: 1rem;
 }

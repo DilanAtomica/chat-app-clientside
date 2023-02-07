@@ -3,6 +3,7 @@ import {Route, Routes} from "react-router-dom";
 import PublicRoutes from "./PublicRoutes";
 import ProtectedRoutes from "./ProtectedRoutes";
 import HomePage from "../pages/Home";
+import SearchedPage from "../pages/Searched";
 
 const Register = React.lazy(() => import("../pages/Register/index"));
 const Login = React.lazy(() => import("../pages/Login/index"));
@@ -16,6 +17,7 @@ function AppRoutes() {
             </Route>
             <Route element={<ProtectedRoutes/>}>
                 <Route element={<><HomePage/></>} path="/home"/>
+                <Route element={<><SearchedPage/></>} path="/search/:searchWord"/>
             </Route>
         </Routes>
     );

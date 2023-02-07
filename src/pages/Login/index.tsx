@@ -45,23 +45,22 @@ function Login() {
                 setError("email", {type: "404", message: error.response.data.message});
                 setError("password", {type: "404", message: error.response.data.message});
             }
-
         }
     };
 
     return (
         <main className="login">
             <Background />
-
             <form onSubmit={handleSubmit(validateInputs)}>
                 <h1>Login</h1>
+                <p>*Required field</p>
 
-                <InputField label={"Email"} errorMsg={errors.email?.message} register={register} />
+                <InputField obligated={true} label={"Email"} errorMsg={errors.email?.message} register={register} />
 
-                <InputField label={"Password"} setShowPassword={setShowPassword} showPassword={showPassword}
+                <InputField obligated={true} label={"Password"} setShowPassword={setShowPassword} showPassword={showPassword}
                             errorMsg={errors.password?.message} register={register} />
 
-                <Button buttonType={"submit"} disabled={isLoading}>Sign In</Button>
+                <Button width={"15.5rem"} buttonType={"submit"} disabled={isLoading}>Sign In</Button>
                 <Link to="/register">Register an account</Link>
             </form>
         </main>

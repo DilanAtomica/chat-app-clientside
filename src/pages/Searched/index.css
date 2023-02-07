@@ -1,0 +1,6 @@
+.searchedPage {
+    width: 100%;
+    min-height: calc(100vh - 3.5rem);
+    position: relative;
+    margin-top: 3.5rem;
+}

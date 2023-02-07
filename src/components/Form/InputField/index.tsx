@@ -9,16 +9,17 @@ type inputFieldProps = {
     showPassword?: boolean,
     setShowPassword?: (showPassword: boolean) => void,
     errorMsg: string | undefined,
+    obligated: boolean,
     register: any
 }
 
-function InputField({label, showPassword, setShowPassword, errorMsg, register}: inputFieldProps) {
+function InputField({label, showPassword, setShowPassword, errorMsg, register, obligated}: inputFieldProps) {
     return (
         <div className="inputContainer">
-            <label htmlFor={label === "Email" ? "emailInput" : "passwordInput"}>{label}:</label>
+            <label htmlFor={label === "Email" ? "emailInput" : "passwordInput"}>{obligated && "*"}{label}:</label>
             <div style={{border: errorMsg ? "1px solid #F7BE61" : "1px solid black"}} className="inputFieldContainer">
 
-                {label === "Email"
+                {(label === "Email" || label === "Username")
                     ? <BsFillPersonFill id="avatarIcon" />
                     : <AiFillUnlock id="lockIcon" />}
 
