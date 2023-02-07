@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import "./index.css";
 import Navbar from "../../components/Navbar";
-import {AiOutlineSearch} from "react-icons/ai";
 import Button from "../../components/Form/Button";
 import {useNavigate} from "react-router-dom";
+import SearchInput from "../../components/Form/SearchInput";
 
 function HomePage() {
 
@@ -12,19 +12,15 @@ function HomePage() {
     const navigate = useNavigate();
 
     const onSubmit = () => {
-        navigate("/search/" + inputValue);
+        navigate("/search/" + inputValue + "/" + 1);
     }
 
     return (
         <main onSubmit={onSubmit} className="homePage">
             <Navbar />
-            <form>
+            <form onSubmit={onSubmit}>
                 <h1>Search for your favorite shows</h1>
-                <div className="searchInputContainer">
-                    <AiOutlineSearch id="searchIcon" />
-                    <input onChange={(e) => setInputValue(e.target.value)}
-                           placeholder={"example: Game of Thrones"} type="search" />
-                </div>
+                <SearchInput setInputValue={setInputValue} />
                 <Button width={"100%"} buttonType={"submit"} disabled={false}>Search</Button>
             </form>
         </main>

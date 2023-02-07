@@ -1,0 +1,29 @@
+.poster {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    align-items: center;
+    position: relative;
+    width: 10rem;
+    cursor: pointer;
+}
+
+.poster > img {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    transition: 0.3s;
+    border-radius: 5px;
+    margin-bottom: 0.75rem;
+}
+
+.poster > img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.poster > h1 {
+    font-size: 0.9rem;
+    word-wrap: break-word;
+}

@@ -1,20 +1,20 @@
 import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
 
-const searchResult = async(searchWord: string) => {
+const searchResult = async(searchWord: string | undefined, page: string | undefined) => {
     try {
-        const searchResultData = await axios.post("http://localhost:3001/movies/searchResult",{searchWord}, {
+        const searchResultData = await axios.post("http://localhost:3001/movies/searchResult",{searchWord, page}, {
             withCredentials: true
         });
-        console.log(searchResultData);
-        return searchResultData;
+        console.log(searchResultData.data);
+        return searchResultData.data;
     } catch(error) {
         console.log(error);
     }
 
 }
-export const useSearchResult = (searchWord: string) => {
-    return useQuery(["searchResultData"], () => searchResult(searchWord));
+export const useSearchResult = (searchWord: string | undefined, page: string | undefined) => {
+    return useQuery(["searchResultData"], () => searchResult(searchWord, page));
 }
 
 

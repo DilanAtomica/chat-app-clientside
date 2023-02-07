@@ -4,3 +4,63 @@
     position: relative;
     margin-top: 3.5rem;
 }
+
+.searchedPage-top {
+    display: flex;
+    max-width: 30rem;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.pagination > .pageNumber {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0F62FE;
+    color: white;
+    transition: 0.2s;
+    margin-right: 0.5rem;
+}
+
+.backForthBtn {
+    width: max-content;
+    height: max-content;
+    padding: 0.25rem 0.75rem;
+    background-color: #0F62FE;
+    color: white;
+    margin-right: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    transition: 0.2s;
+}
+
+.pagination > .pageNumber:hover, .pagination > .backForthBtn:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.searchedPage-top > h1 {
+    margin-bottom: 1rem;
+}
+
+.movies {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

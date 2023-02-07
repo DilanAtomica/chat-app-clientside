@@ -20,27 +20,3 @@
     margin-bottom: 1rem;
     text-align: center;
 }
-
-.homePage > form > .searchInputContainer {
-    height: 2.5rem;
-    width: 100%;
-    border-radius: 100px;
-    border: 1px solid black;
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.homePage > form > .searchInputContainer > #searchIcon {
-    position: absolute;
-    margin-left: 0.75rem;
-}
-
-.homePage > form > .searchInputContainer > input {
-    height: 2.5rem;
-    width: 100%;
-    border-radius: 100px;
-    border: 1px solid black;
-    font-size: 0.9rem;
-    padding: 0 2rem 0 2rem;
-}

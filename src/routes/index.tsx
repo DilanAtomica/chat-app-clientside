@@ -17,7 +17,7 @@ function AppRoutes() {
             </Route>
             <Route element={<ProtectedRoutes/>}>
                 <Route element={<><HomePage/></>} path="/home"/>
-                <Route element={<><SearchedPage/></>} path="/search/:searchWord"/>
+                <Route element={<><SearchedPage/></>} path="/search/:searchWord/:page"/>
             </Route>
         </Routes>
     );
