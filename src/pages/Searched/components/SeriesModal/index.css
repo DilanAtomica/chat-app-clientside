@@ -1,0 +1,93 @@
+.seriesModalContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    z-index: 11;
+}
+
+.seriesModal {
+    background-color: white;
+    color: black;
+    width: 40rem;
+    height: max-content;
+    border-radius: 15px;
+    margin-top: 5rem;
+}
+
+.seriesModal > header {
+    margin: 1rem 0 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.seriesModal > header > button {
+    border: none;
+    font-size: 1.1rem;
+    margin-right: 13rem;
+    border-radius: 100px;
+    transition: 0.2s;
+    padding: 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+}
+
+.seriesModal > header > button:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+.seriesModal > header > h1 {
+    font-size: 1.5rem;
+}
+
+.seriesContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.seriesContent > img {
+    object-fit: contain;
+    width: 20rem;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.seriesContent > h1 {
+    color: black;
+}
+
+.seasons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.episodes {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.seasons > button, .episodes > button {
+    margin-right: 1rem;
+}

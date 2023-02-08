@@ -7,12 +7,16 @@ import SearchInput from "../../components/Form/SearchInput";
 import Button from "../../components/Form/Button";
 import Poster from "./components/Poster";
 import LoadingScreen from "../../components/LoadingScreen";
+import SeriesModal from "./components/SeriesModal";
+import useSeriesModal from "../../stores/SeriesModal";
 
 function SearchedPage() {
 
     const {searchWord, page} = useParams();
     const {data, isFetching} = useSearchResult(searchWord, page);
     const navigate = useNavigate();
+
+    const seriesModal = useSeriesModal();
 
     const [inputValue, setInputValue] = useState("");
     const [pages, setPages] = useState<number[] | null>(null);
@@ -56,6 +60,7 @@ function SearchedPage() {
         <main className="searchedPage">
             {isFetching && <LoadingScreen />}
             <Navbar />
+            {seriesModal.showSeriesModal && <SeriesModal />}
 
             <form onSubmit={onSubmit} className="searchedPage-top">
                 <h1>Search for your favorite shows</h1>

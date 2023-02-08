@@ -2,6 +2,8 @@ import {create} from "zustand";
 
 type useLoadingScreen = {
     showLoadingScreen: boolean,
+    activateLoadingScreen: () => void,
+    deActivateLoadingScreen: () => void,
 }
 
 export const useLoadingScreen = create<useLoadingScreen>((set) => ({

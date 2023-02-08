@@ -2,12 +2,11 @@ import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import PublicRoutes from "./PublicRoutes";
 import ProtectedRoutes from "./ProtectedRoutes";
-import HomePage from "../pages/Home";
-import SearchedPage from "../pages/Searched";
-import SeriesPage from "../pages/SeriesPage";
 
 const Register = React.lazy(() => import("../pages/Register/index"));
 const Login = React.lazy(() => import("../pages/Login/index"));
+const Home = React.lazy(() => import("../pages/Home/index"));
+const SearchedPage = React.lazy(() => import("../pages/Searched"));
 
 function AppRoutes() {
     return (
@@ -17,9 +16,8 @@ function AppRoutes() {
                 <Route element={<> <Register/> </>} path="/register"/>
             </Route>
             <Route element={<ProtectedRoutes/>}>
-                <Route element={<><HomePage/></>} path="/home"/>
+                <Route element={<><Home/></>} path="/home"/>
                 <Route element={<><SearchedPage/></>} path="/search/:searchWord/:page"/>
-                <Route element={<><SeriesPage/></>} path="/series/:seriesID"/>
             </Route>
         </Routes>
     );

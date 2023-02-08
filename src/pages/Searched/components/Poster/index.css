@@ -9,12 +9,7 @@
     cursor: pointer;
 }
 
-.poster > a {
-    text-decoration: none;
-    color: black;
-}
-
-.poster > a > img {
+.poster > img {
     object-fit: cover;
     height: 15rem;
     width: 100%;
@@ -23,12 +18,12 @@
     margin-bottom: 0.75rem;
 }
 
-.poster > a > img:hover {
+.poster > img:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
 
-.poster > a > h1 {
+.poster > h1 {
     font-size: 0.9rem;
     word-wrap: break-word;
 }
