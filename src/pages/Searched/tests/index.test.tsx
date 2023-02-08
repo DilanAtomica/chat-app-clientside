@@ -24,6 +24,8 @@ describe("Searched Page", () => {
         expect(searchField).toHaveValue("Game");
         const submitBtn = screen.getByRole("submitBtn");
         expect(submitBtn).toBeInTheDocument();
+        expect(submitBtn).toBeEnabled();
+
     });
 
 });

@@ -33,6 +33,14 @@
     justify-content: center;
 }
 
-.seasons > button {
+.episodes {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.seasons > button, .episodes > button {
     margin-right: 1rem;
 }
