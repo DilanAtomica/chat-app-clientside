@@ -3,21 +3,21 @@ import {render, screen, fireEvent} from "@testing-library/react";
 import {BrowserRouter} from "react-router-dom";
 import {client} from "../../../lib/react-query";
 import {QueryClientProvider} from "@tanstack/react-query";
-import HomePage from "../index";
+import SearchedPage from "../index";
 
-const MockHomePage = () => {
+const MockSearchedPage = () => {
     return (
         <QueryClientProvider client={client}>
             <BrowserRouter>
-                <HomePage />
+                <SearchedPage />
             </BrowserRouter>
         </QueryClientProvider>
     )
 };
 
-describe("Home Page", () => {
+describe("Searched Page", () => {
     it("Should type value in search field", () => {
-        render(<MockHomePage />);
+        render(<MockSearchedPage />);
         const searchField = screen.getByRole("searchField");
         expect(searchField).toBeInTheDocument();
         fireEvent.change(searchField, {target: {value: 'Game'}})

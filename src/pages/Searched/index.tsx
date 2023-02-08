@@ -56,7 +56,6 @@ function SearchedPage() {
         <main className="searchedPage">
             {isFetching && <LoadingScreen />}
             <Navbar />
-            <h1 role="seriesName">{searchWord}</h1>
 
             <form onSubmit={onSubmit} className="searchedPage-top">
                 <h1>Search for your favorite shows</h1>
