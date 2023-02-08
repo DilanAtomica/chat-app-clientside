@@ -21,7 +21,7 @@
     justify-content: center;
 }
 
-.pagination > .pageNumber {
+.pagination > li > .pageNumber {
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 100px;
@@ -50,7 +50,7 @@
     border: none;
 }
 
-.pagination > .pageNumber:hover, .pagination > .backForthBtn:hover {
+.pagination > li > .pageNumber:hover, .pagination > li > .backForthBtn:hover {
     opacity: 0.8;
     cursor: pointer;
 }

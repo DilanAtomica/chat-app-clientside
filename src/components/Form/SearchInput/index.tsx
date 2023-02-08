@@ -12,7 +12,7 @@ function SearchInput({setInputValue}: searchInputProps) {
             <div className="searchInputContainer">
                 <AiOutlineSearch id="searchIcon" />
                 <input required={true} onChange={(e) => setInputValue(e.target.value)}
-                       placeholder={"example: Game of Thrones"} type="search" />
+                       placeholder={"example: Game of Thrones"} type="search" role="searchField" />
             </div>
     );
 }

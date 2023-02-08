@@ -56,6 +56,7 @@ function SearchedPage() {
         <main className="searchedPage">
             {isFetching && <LoadingScreen />}
             <Navbar />
+            <h1 role="seriesName">{searchWord}</h1>
 
             <form onSubmit={onSubmit} className="searchedPage-top">
                 <h1>Search for your favorite shows</h1>
@@ -63,25 +64,25 @@ function SearchedPage() {
                 <Button width={"100%"} buttonType={"submit"} disabled={false}>Search</Button>
             </form>
 
-            <div className="pagination">
+            <ul className="pagination">
                 {pages && page && parseInt(page) !== 1 &&
-                    <button onClick={onNextPrevClick} type="button" id="prevBtn" className="backForthBtn">Prev</button>}
+                    <li><button onClick={onNextPrevClick} type="button" id="prevBtn" className="backForthBtn">Prev</button></li>}
 
                 {pages && pages.map(pageIndex => (
-                    <button onClick={onPageClick} style={{backgroundColor: page && pageIndex === parseInt(page) ? "black" : "#0F62FE"}}
-                            type="button" key={pageIndex} className="pageNumber">{pageIndex}</button>
+                    <li key={pageIndex}><button onClick={onPageClick} style={{backgroundColor: page && pageIndex === parseInt(page) ? "black" : "#0F62FE"}}
+                                type="button" className="pageNumber">{pageIndex}</button></li>
 
                 ))}
                 {pages && page && parseInt(page) !== data?.total_pages &&
-                    <button onClick={onNextPrevClick} id="nextBtn" type="button" className="backForthBtn">Next</button>}
-            </div>
+                    <li><button onClick={onNextPrevClick} id="nextBtn" type="button" className="backForthBtn">Next</button></li>}
+            </ul>
 
 
-            <div className="movies">
+            <ul className="movies">
                 {data?.results.map((movie: { id: number, poster: string, name: string, poster_path: string }) => (
                     <Poster key={movie.id} id={movie.id} poster={movie.poster_path} name={movie.name} />
                 ))}
-            </div>
+            </ul>
         </main>
     );
 }

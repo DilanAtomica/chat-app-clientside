@@ -9,21 +9,26 @@
     cursor: pointer;
 }
 
-.poster > img {
-    object-fit: contain;
+.poster > a {
+    text-decoration: none;
+    color: black;
+}
+
+.poster > a > img {
+    object-fit: cover;
+    height: 15rem;
     width: 100%;
-    height: auto;
     transition: 0.3s;
     border-radius: 5px;
     margin-bottom: 0.75rem;
 }
 
-.poster > img:hover {
+.poster > a > img:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
 
-.poster > h1 {
+.poster > a > h1 {
     font-size: 0.9rem;
     word-wrap: break-word;
 }

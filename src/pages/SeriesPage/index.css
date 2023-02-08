@@ -1,0 +1,38 @@
+.seriesPage {
+    width: 100%;
+    min-height: calc(100vh - 3.5rem);
+    position: relative;
+    margin-top: 3.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.seriesContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45rem;
+}
+
+.seriesContent > img {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+}
+
+.seriesContent > h1 {
+    color: black;
+}
+
+.seasons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.seasons > button {
+    margin-right: 1rem;
+}

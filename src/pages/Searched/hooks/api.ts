@@ -3,7 +3,7 @@ import axios from "axios";
 
 const searchResult = async(searchWord: string | undefined, page: string | undefined) => {
     try {
-        const searchResultData = await axios.post("http://localhost:3001/movies/searchResult",{searchWord, page}, {
+        const searchResultData = await axios.post("http://localhost:3001/shows/searchResult",{searchWord, page}, {
             withCredentials: true
         });
         console.log(searchResultData.data);
