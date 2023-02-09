@@ -6,7 +6,8 @@ import ProtectedRoutes from "./ProtectedRoutes";
 const Register = React.lazy(() => import("../pages/Register/index"));
 const Login = React.lazy(() => import("../pages/Login/index"));
 const Home = React.lazy(() => import("../pages/Home/index"));
-const SearchedPage = React.lazy(() => import("../pages/Searched"));
+const Searched = React.lazy(() => import("../pages/Searched"));
+const Profile = React.lazy(() => import("../pages/Profile"));
 
 function AppRoutes() {
     return (
@@ -17,7 +18,8 @@ function AppRoutes() {
             </Route>
             <Route element={<ProtectedRoutes/>}>
                 <Route element={<><Home/></>} path="/home"/>
-                <Route element={<><SearchedPage/></>} path="/search/:searchWord/:page"/>
+                <Route element={<><Searched/></>} path="/search/:searchWord/:page"/>
+                <Route element={<><Profile/></>} path="/profile"/>
             </Route>
         </Routes>
     );
