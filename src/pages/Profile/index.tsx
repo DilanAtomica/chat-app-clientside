@@ -1,11 +1,12 @@
 import React from 'react';
 import "./index.css";
 import Navbar from "../../components/Navbar";
-import {useActiveChatQueues} from "./hooks/api";
+import {useActiveChatQueues, useDeleteChatQueue} from "./hooks/api";
 import LoadingScreen from "../../components/LoadingScreen";
-import Poster from "../Searched/components/Poster";
+import {BsTrashFill} from "react-icons/bs";
 
 type seriesType = {
+    chatQueueID: number,
     seriesID: number,
     name: string,
     image: string,
@@ -16,7 +17,14 @@ type seriesType = {
 
 function ProfilePage() {
 
-    const {data, isFetching} = useActiveChatQueues();
+    const {data, isFetching, refetch} = useActiveChatQueues();
+    const {mutate} = useDeleteChatQueue();
+
+    const handleOnClick = (chatQueueID: number) => {
+        console.log(chatQueueID)
+        mutate(chatQueueID);
+        window.location.reload();
+    }
 
     return (
         <div className="profilePage">
@@ -26,12 +34,13 @@ function ProfilePage() {
 
             <ul className="activeSeriesQueues">
                 {data?.map((series: seriesType) => (
-                    <li key={series.seriesID} className="seriesQueue">
+                    <li key={series.chatQueueID} className="seriesQueue">
                         <img alt={series.name} src={"https://image.tmdb.org/t/p/w500" + series.image} />
                         <div className="seriesQueueRight">
                             <h2>{series.name}</h2>
                             <h3>Season {series.season}</h3>
                             <h3>Episode {series.episode}</h3>
+                            <button onClick={() => handleOnClick(series.chatQueueID)} type="button"><BsTrashFill id="trashIcon" /></button>
                         </div>
                     </li>
                 ))}

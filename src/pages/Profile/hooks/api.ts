@@ -1,4 +1,4 @@
-import {useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery} from "@tanstack/react-query";
 import axios from "axios";
 
 const activeChatQueues = async() => {
@@ -19,4 +19,15 @@ const activeChatQueues = async() => {
 export const useActiveChatQueues = () => {
     return useQuery(["activeChatQueuesData"], () => activeChatQueues());
 }
+
+
+const deleteChatQueue = (chatQueueID: number) => {
+    return axios.post("http://localhost:3001/chats/deleteChatQueue", {chatQueueID}, {withCredentials: true});
+};
+
+export const useDeleteChatQueue = () => {
+    return useMutation(["deleteChatQueueMutation"], (chatQueueID: number) => deleteChatQueue(chatQueueID));
+}
+
+
 

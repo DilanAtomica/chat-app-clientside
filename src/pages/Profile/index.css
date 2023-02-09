@@ -20,6 +20,9 @@
 .seriesQueue {
     display: flex;
     margin-bottom: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 15px;
+    width: max-content;
 }
 
 .seriesQueue > img {
@@ -33,10 +36,10 @@
 .seriesQueueRight {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     padding: 0.5rem;
+    position: relative;
 }
 
 .seriesQueueRight > h2 {
@@ -48,4 +51,25 @@
     font-size: 1rem;
     font-weight: 400;
     margin-bottom: 0.5rem;
+}
+
+.seriesQueueRight > button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 0.75rem;
+    margin-bottom: 0.75rem;
+    padding: 0.25rem;
+    transition: 0.2s;
+    border-radius: 100px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.seriesQueueRight > button:hover {
+    cursor: pointer;
+    background-color: lightgrey;
 }
