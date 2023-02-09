@@ -17,6 +17,3 @@ export const useSearchResult = (searchWord: string | undefined, page: string | u
     return useQuery(["searchResultData"], () => searchResult(searchWord, page));
 }
 
-
-
-

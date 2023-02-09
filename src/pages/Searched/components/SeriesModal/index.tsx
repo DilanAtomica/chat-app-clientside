@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import "./index.css";
 import {RxCross1} from "react-icons/rx";
-import {useSeriesResult} from "./hooks/api"
+import {useChatQueue, useSeriesResult} from "./hooks/api"
 import useSeriesModal from "../../../../stores/SeriesModal";
 import Button from "../../../../components/Form/Button";
 import LoadingScreen from "../../../../components/LoadingScreen";
@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 function SeriesModal() {
 
     const seriesModal = useSeriesModal();
+    const {mutate} = useChatQueue();
     const {data, isFetching} = useSeriesResult(seriesModal.seriesID);
 
     const [season, setSeason] = useState<number | null>(null);
@@ -41,7 +42,9 @@ function SeriesModal() {
 
     const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-    }
+        console.log(episodeInput + "/" + season);
+        if((season && episodeInput)) mutate({seriesID: data?.id, season: season, episode: parseInt(episodeInput)});
+    };
 
     return (
         <div onClick={onBackgroundClick} className="seriesModalContainer">
@@ -58,21 +61,24 @@ function SeriesModal() {
 
                     <form onSubmit={handleOnSubmit}>
                         <label htmlFor="episodes">Choose a season:</label>
-                        <select onChange={(e) => setSeason(parseInt(e.target.value))} name="seasons" id="seasons">
+                        <select defaultValue={"Season"} onChange={(e) => setSeason(parseInt(e.target.value))}
+                                name="seasons" id="seasons">
+                            <option value="Season" disabled={true}>Season</option>
                             {data?.seasons.map((season: any) => (
                                 season.name !== "Specials" &&
-                                <option key={uuidv4()} value={season.season_number}>Season {season.season_number}</option>
+                                <option value={season.season_number}>Season {season.season_number}</option>
                             ))}
                         </select>
 
 
                         <label htmlFor="episodes">Choose an episode:</label>
-                        <select disabled={season === null} onChange={(e) => setEpisodeInput(e.target.value)} name="episodes" id="episodes">
+                        <select defaultValue={"Episode"} disabled={season === null} onChange={(e) => setEpisodeInput(e.target.value)} name="episodes" id="episodes">
+                            <option value="Episode" disabled={true}>Episode</option>
                             {episodes?.map((episode: any) => (
-                            <option key={uuidv4()} value={episode}>Episode {episode}</option>
+                            <option value={episode}>Episode {episode}</option>
                             ))}
                         </select>
-                        <Button buttonType={"submit"} disabled={false} width={"max-content"}>Find a chatter</Button>
+                        <Button buttonType={"submit"} disabled={(!season || !episodeInput)} width={"max-content"}>Find a chatter</Button>
                     </form>
 
                 </div>

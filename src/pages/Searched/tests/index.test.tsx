@@ -1,5 +1,5 @@
 import React from "react";
-import {render, screen, fireEvent} from "@testing-library/react";
+import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import {BrowserRouter} from "react-router-dom";
 import {client} from "../../../lib/react-query";
 import {QueryClientProvider} from "@tanstack/react-query";
@@ -25,7 +25,6 @@ describe("Searched Page", () => {
         const submitBtn = screen.getByRole("submitBtn");
         expect(submitBtn).toBeInTheDocument();
         expect(submitBtn).toBeEnabled();
-
+        fireEvent.click(submitBtn);
     });
-
 });

@@ -87,6 +87,7 @@ function SearchedPage() {
                     <Poster key={movie.id} id={movie.id} poster={movie.poster_path} name={movie.name} />
                 ))}
             </ul>
+
         </main>
     );
 }
