@@ -3,8 +3,13 @@ import "./index.css";
 import Navbar from "../../components/Navbar";
 import {AiOutlineMessage} from "react-icons/ai";
 import Button from "../../components/Form/Button";
+import {useSearchResult} from "./hooks/api";
+import ActiveChat from "./components/ActiveChat";
+import {chatType} from "./types";
 
 function ChatPage() {
+
+    const {data} = useSearchResult();
 
     const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -18,22 +23,13 @@ function ChatPage() {
                     <header>
                         <h1>Chats</h1>
                     </header>
-                    <div className="activeChat">
-                        <img src={"https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"} />
-                            <ul>
-                                <li>Game of Thrones</li>
-                                <li>Season 9 · Episode 5</li>
-                                <li>Chatting with Dilan</li>
-                            </ul>
-                    </div>
-                    <div className="activeChat">
-                        <img src={"https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"} />
-                        <ul>
-                            <li>Game of Thrones</li>
-                            <li>Season 9 · Episode 5</li>
-                            <li>Chatting with Dilan</li>
-                        </ul>
-                    </div>
+                    {data?.map((chat: chatType) => (
+                        <ActiveChat key={chat.chatID} chatID={chat.chatID} seriesImage={chat.seriesImage} seriesName={chat.seriesName}
+                                    seriesSeason={chat.seriesSeason} seriesEpisode={chat.seriesEpisode} otherUserName={chat.otherUserName}
+                                    created_at={chat.created_at} onClick={() => console.log("hey")}
+                        />
+                    ))}
+
                 </div>
 
                 <div className="chatWindow">
