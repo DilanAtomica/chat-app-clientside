@@ -1,0 +1,156 @@
+.chatPage {
+    width: 100%;
+    min-height: calc(100vh - 3.5rem);
+    position: relative;
+    margin-top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chatContainer {
+    margin-top: 2rem;
+    border: 1px solid rgb(219, 219, 219);
+    width: 55rem;
+    height: 85vh;
+    border-radius: 5px;
+    display: flex;
+}
+
+.activeChats {
+    width: 20rem;
+    height: 100%;
+    border-right: 1px solid rgb(219, 219, 219);
+}
+
+.activeChats > header {
+    width: 100%;
+    height: 3.5rem;
+    border-bottom: 1px solid rgb(219, 219, 219);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.activeChats > .activeChat {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid lightgrey;
+    padding: 0.5rem 0;
+}
+
+.activeChats > .activeChat:hover {
+    background-color: rgba(239,239,239, 0.5);
+    cursor: pointer;
+}
+
+.activeChats > .activeChat > img {
+    object-fit: cover;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100px;
+    margin: 0 1rem;
+}
+
+.activeChats > .activeChat > ul {
+    font-size: 0.9em;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.chatWindow {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.chatWindow > header {
+    width: 100%;
+    height: 3.5rem;
+    border-bottom: 1px solid rgb(219, 219, 219);
+    display: flex;
+    align-items: center;
+}
+
+.chatWindow > header > img {
+    object-fit: cover;
+    width: 5rem;
+    height: 3rem;
+    border-radius: 5px;
+    margin: 0 1rem;
+}
+
+.chatWindow > header > ul {
+    font-size: 0.9rem;
+    display: flex;
+}
+
+.chatWindow > header > ul > li:nth-child(2) {
+    margin: 0 0.25rem;
+}
+
+.chatWindowMessages {
+    flex: 1;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.chatWindowMessageContainer {
+    display: flex;
+}
+
+.chatWindowMessage {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatWindowMessage > .message {
+    color: white;
+    background-color: #0F62FE;
+    padding: 0.75rem;
+    border-radius: 15px 15px 0 15px;
+    max-width: 20rem;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.chatWindowMessage > .messageDate {
+    width: max-content;
+    font-size: 0.9rem;
+    color: #536471;
+}
+
+.chatWindowInput {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.chatWindowInput > input {
+    width: 65%;
+    height: 2.5rem;
+    border-radius: 100px;
+    border: 1px solid rgb(219, 219, 219);
+    padding: 0 6rem 0 4rem;
+}
+
+.chatWindowInput > #chatBubbleIcon {
+    font-size: 1.5rem;
+    position: absolute;
+    left: 2.5rem;
+}
+
+.chatWindowInput > button {
+    position: absolute;
+    right: 2rem;
+    padding: 0.25rem 0.75rem !important;
+    font-size: 0.9rem !important;
+}

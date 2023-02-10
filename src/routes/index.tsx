@@ -8,6 +8,7 @@ const Login = React.lazy(() => import("../pages/Login/index"));
 const Home = React.lazy(() => import("../pages/Home/index"));
 const Searched = React.lazy(() => import("../pages/Searched"));
 const Profile = React.lazy(() => import("../pages/Profile"));
+const Chat = React.lazy(() => import("../pages/Chat"));
 
 function AppRoutes() {
     return (
@@ -20,6 +21,7 @@ function AppRoutes() {
                 <Route element={<><Home/></>} path="/home"/>
                 <Route element={<><Searched/></>} path="/search/:searchWord/:page"/>
                 <Route element={<><Profile/></>} path="/profile"/>
+                <Route element={<><Chat/></>} path="/chat"/>
             </Route>
         </Routes>
     );

@@ -10,6 +10,7 @@ type buttonProps = {
     children: ReactNode;
     buttonType: "button" | "submit";
     disabled: boolean,
+    width: string,
 }
 
 const Template = (args: buttonProps) => <Button {...args}>{args.children}</Button>

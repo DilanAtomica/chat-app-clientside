@@ -12,7 +12,7 @@ type inputFieldProps = {
     errorMsg: string | undefined,
 }
 
-const Template = (args: inputFieldProps) => <InputField register={() => console.log("")} {...args} />
+const Template = (args: inputFieldProps) => <InputField obligated={true} register={() => console.log("")} {...args} />
 
 export const EmailInput = Template.bind({});
 // @ts-ignore
