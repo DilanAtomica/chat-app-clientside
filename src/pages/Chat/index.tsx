@@ -8,6 +8,7 @@ import ActiveChat from "./components/ActiveChat";
 import {chatType, messageType} from "./types";
 import Message from "./components/Message";
 import LoadingScreen from "../../components/LoadingScreen";
+import useScreenWidth from "../../stores/screenWidth";
 
 function ChatPage() {
 
@@ -15,6 +16,8 @@ function ChatPage() {
     const [currentChatID, setCurrentChatID] = useState<null | number>(null);
     const {data: currentChatData, refetch, isFetching: isFetchingCurrentChat} = useChat(currentChatID);
     const {mutate} = useMessage();
+
+    const {width} = useScreenWidth();
 
     const [trigger, setTrigger] = useState(false);
 
@@ -38,7 +41,7 @@ function ChatPage() {
     }
 
     return (
-        <div className="chatPage">
+        <main className="chatPage">
             <Navbar />
             {(isFetchingCurrentChat || isFetchingActiveChats) && <LoadingScreen />}
             <div className="chatContainer">
@@ -83,9 +86,8 @@ function ChatPage() {
                         </form>}
 
                 </div>
-
             </div>
-        </div>
+        </main>
     );
 }
 
