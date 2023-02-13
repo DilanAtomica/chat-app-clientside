@@ -20,5 +20,5 @@ export type messageType = {
     messageID: number,
     message: string,
     messageSent: boolean,
-    created_at: Date,
+    dateSent: string,
 }
