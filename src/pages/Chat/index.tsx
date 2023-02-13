@@ -1,18 +1,35 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import "./index.css";
 import Navbar from "../../components/Navbar";
 import {AiOutlineMessage} from "react-icons/ai";
 import Button from "../../components/Form/Button";
-import {useSearchResult} from "./hooks/api";
+import {useChats, useChat, useMessage} from "./hooks/api";
 import ActiveChat from "./components/ActiveChat";
-import {chatType} from "./types";
+import {chatType, messageType} from "./types";
+import Message from "./components/Message";
 
 function ChatPage() {
 
-    const {data} = useSearchResult();
+    const {data} = useChats();
+    const [currentChatID, setCurrentChatID] = useState<null | number>(null);
+    const {data: currentChatData, refetch} = useChat(currentChatID);
+    const {mutate} = useMessage();
 
-    const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const [inputValue, setInputValue] = useState("");
+
+    useEffect(() => {
+        if(currentChatID) refetch();
+    }, [currentChatID]);
+
+    const openChat = (chat: chatType) => {
+        setCurrentChatID(chat.chatID);
+    }
+
+    const onSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if(currentChatID) mutate({chatID: currentChatID, text: inputValue});
+        await refetch();
+        setInputValue("");
     }
 
     return (
@@ -26,7 +43,7 @@ function ChatPage() {
                     {data?.map((chat: chatType) => (
                         <ActiveChat key={chat.chatID} chatID={chat.chatID} seriesImage={chat.seriesImage} seriesName={chat.seriesName}
                                     seriesSeason={chat.seriesSeason} seriesEpisode={chat.seriesEpisode} otherUserName={chat.otherUserName}
-                                    created_at={chat.created_at} onClick={() => console.log("hey")}
+                                    created_at={chat.created_at} onClick={() => openChat(chat)}
                         />
                     ))}
 
@@ -34,35 +51,28 @@ function ChatPage() {
 
                 <div className="chatWindow">
                     <header>
-                        <img src={"https://image.tmdb.org/t/p/w500/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg"} />
-                        <ul>
-                            <li>Game of Thrones</li>
-                            <li>· Season 9 · Episode 5 ·</li>
-                            <li>Chatting with Dilan</li>
-                        </ul>
+
+                        {currentChatData &&
+                            <><img alt={currentChatData.seriesName} src={"https://image.tmdb.org/t/p/w500" + currentChatData?.seriesImage}/>
+                                <ul>
+                                    <li>{currentChatData.chatID}</li>
+                                    <li>· Season {currentChatData.seriesSeason} · Episode {currentChatData.seriesEpisode} ·</li>
+                                    <li>Chatting with {currentChatData?.otherUserName}</li>
+                                </ul>
+                            </>}
                     </header>
                     <div className="chatWindowMessages">
-                        <div style={{justifyContent: "flex-end"}} className="chatWindowMessageContainer">
-                            <div className="chatWindowMessage">
-                                <p className="message">What are your thoughts on bulletproof-react by alan2207?</p>
-                                <p className="messageDate" style={{margin: "0 0 1rem 1rem"}}>Feb 27, 2016, 10:57 PM · Sent</p>
-                            </div>
-                        </div>
-
-                        <div style={{justifyContent: "flex-start"}} className="chatWindowMessageContainer">
-                            <div className="chatWindowMessage">
-                                <p className="message" style={{backgroundColor: "rgba(239,239,239, 0.8)", color: "black", borderRadius: "15px 15px 15px 0",
-                                    margin: "0 0 0.5rem 1rem"}}>
-                                    What are your thoughts on bulletproof-react by alan2207?
-                                </p>
-                                <p className="messageDate" style={{margin: "0 0 1rem 1rem"}}>Feb 27, 2016, 10:57 PM · Sent</p>
-                            </div>
-                        </div>
+                        {currentChatData?.messages?.map((message: messageType) => (
+                            <Message key={message.messageID} createdAt={message.created_at} messageID={message.messageID}
+                                     messageSent={message.messageSent}>
+                                {message.message}
+                            </Message>
+                        ))}
 
                     </div>
-                    <form onSubmit={handleOnSubmit} className="chatWindowInput">
+                    <form onSubmit={onSubmit} className="chatWindowInput">
                         <AiOutlineMessage id="chatBubbleIcon" />
-                        <input type="text" placeholder="Send a message..." />
+                        <input onChange={(e) => setInputValue(e.target.value)} type="text" placeholder="Send a message..." />
                         <Button buttonType={"submit"} disabled={false} width={"max-content"}>Send</Button>
                     </form>
                 </div>

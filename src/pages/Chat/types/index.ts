@@ -8,5 +8,17 @@ export type chatType = {
     seriesName: string,
     seriesImage: string,
     created_at: Date,
-    onClick: MouseEventHandler<HTMLButtonElement>,
+    onClick?: MouseEventHandler<HTMLButtonElement>,
+}
+
+export type sendMessageType = {
+    chatID: number,
+    text: string,
+}
+
+export type messageType = {
+    messageID: number,
+    message: string,
+    messageSent: boolean,
+    created_at: Date,
 }

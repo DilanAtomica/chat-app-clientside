@@ -1,0 +1,22 @@
+.chatWindowMessageContainer {
+    display: flex;
+}
+
+.chatWindowMessage {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatWindowMessage > .message {
+    padding: 0.75rem;
+    max-width: 20rem;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.chatWindowMessage > .messageDate {
+    width: max-content;
+    font-size: 0.9rem;
+    color: #536471;
+}
