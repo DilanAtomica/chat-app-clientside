@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, {MouseEventHandler, ReactNode} from 'react';
 import "./index.css";
 
 type buttonProps = {
@@ -6,11 +6,18 @@ type buttonProps = {
     buttonType: "button" | "submit",
     disabled: boolean,
     width: string,
+    margin?: string,
+    onClick?: MouseEventHandler<HTMLButtonElement>,
 }
 
-function Button({children, buttonType, disabled, width} : buttonProps) {
+function Button({children, buttonType, disabled, width, margin, onClick} : buttonProps) {
     return (
-        <button role={"submitBtn"} style={{opacity: disabled ? "0.5" : "1", width: width}} disabled={disabled} id="button" type={buttonType}>
+        <button onClick={onClick} role={"submitBtn"} style={{
+            opacity: disabled ? "0.5" : "1",
+            width: width,
+            margin: margin && margin,
+        }}
+                disabled={disabled} id="button" type={buttonType}>
             {children}
         </button>
     );

@@ -9,6 +9,7 @@ import {chatType, messageType} from "./types";
 import Message from "./components/Message";
 import LoadingScreen from "../../components/LoadingScreen";
 import useScreenWidth from "../../stores/screenWidth";
+import ChatsModal from "./components/ChatsModal";
 
 function ChatPage() {
 
@@ -17,18 +18,20 @@ function ChatPage() {
     const {data: currentChatData, refetch, isFetching: isFetchingCurrentChat} = useChat(currentChatID);
     const {mutate} = useMessage();
 
-    const {width} = useScreenWidth();
+    const {screenWidth} = useScreenWidth();
 
     const [trigger, setTrigger] = useState(false);
-
     const [inputValue, setInputValue] = useState("");
+    const [showChatsModal, setShowChatsModal] = useState<boolean>(false);
 
     useEffect(() => {
         if(currentChatID) refetch();
     }, [currentChatID, trigger]);
 
-    const openChat = (chat: chatType) => {
-        setCurrentChatID(chat.chatID);
+    const openChat = (chatID: number) => {
+        setCurrentChatID(chatID);
+        setShowChatsModal(false);
+        console.log("sup");
     }
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,19 +46,22 @@ function ChatPage() {
     return (
         <main className="chatPage">
             <Navbar />
+            {showChatsModal && <ChatsModal chats={data} openChat={openChat} />}
             {(isFetchingCurrentChat || isFetchingActiveChats) && <LoadingScreen />}
             <div className="chatContainer">
-                <div className="activeChats">
-                    <header>
-                        <h1>Chats</h1>
-                    </header>
-                    {data?.map((chat: chatType) => (
-                        <ActiveChat key={chat.chatID} chatID={chat.chatID} seriesImage={chat.seriesImage} seriesName={chat.seriesName}
-                                    seriesSeason={chat.seriesSeason} seriesEpisode={chat.seriesEpisode} otherUserName={chat.otherUserName}
-                                    created_at={chat.created_at} onClick={() => openChat(chat)}
-                        />
-                    ))}
-                </div>
+                {screenWidth > 900 &&
+                    <div className="activeChats">
+                        <header>
+                            <h1>Chats</h1>
+                        </header>
+                        {data?.map((chat: chatType) => (
+                            <ActiveChat key={chat.chatID} chatID={chat.chatID} seriesImage={chat.seriesImage} seriesName={chat.seriesName}
+                                        seriesSeason={chat.seriesSeason} seriesEpisode={chat.seriesEpisode} otherUserName={chat.otherUserName}
+                                        created_at={chat.created_at} onClick={() => openChat(chat.chatID)}
+                            />
+                        ))}
+                    </div>
+                }
 
                 <div className="chatWindow">
                     <header>
@@ -67,6 +73,9 @@ function ChatPage() {
                                     <li>Chatting with {currentChatData?.otherUserName}</li>
                                 </ul>
                             </>}
+                        {screenWidth < 900 &&
+                            <Button onClick={() => setShowChatsModal(true)} margin={"0"} buttonType={"button"} disabled={false} width={"max-content"}>Chats</Button>
+                        }
                     </header>
 
                     <div className="chatWindowMessages">

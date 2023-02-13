@@ -100,3 +100,10 @@
     padding: 0.25rem 0.75rem !important;
     font-size: 0.9rem !important;
 }
+
+@media (max-width: 900px) {
+    .chatContainer {
+        width: 90%;
+        margin: auto;
+    }
+}

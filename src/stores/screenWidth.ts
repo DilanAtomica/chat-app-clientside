@@ -1,12 +1,12 @@
 import {create} from "zustand";
 
 type useScreenWidth = {
-    width: number,
+    screenWidth: number,
 }
 
 export const useScreenWidth = create<useScreenWidth>((set) => ({
-    width: 0,
-    changeWidth: (newWidth: number) => set(() => ({width : newWidth})),
+    screenWidth: 0,
+    changeWidth: (newWidth: number) => set(() => ({screenWidth : newWidth})),
 }));
 
 export default useScreenWidth;

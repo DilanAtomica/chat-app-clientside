@@ -11,6 +11,7 @@
 
 .activeChat:hover {
     background-color: rgba(239,239,239, 0.5);
+    border-radius: 100px;
     cursor: pointer;
 }
 
