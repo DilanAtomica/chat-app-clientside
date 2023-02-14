@@ -85,6 +85,27 @@
     width: 100%;
 }
 
+.seriesContent > form  > .errorMsgContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+.seriesContent > form > .errorMsgContainer .errorMsg {
+    color: #F7BE61;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.inputContainer #alertIcon {
+    margin-right: 0.5rem;
+}
+
+
 @media (max-width: 1000px) {
     .seriesModalContainer {
         align-items: start;

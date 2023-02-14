@@ -6,16 +6,24 @@ import useSeriesModal from "../../../../stores/SeriesModal";
 import Button from "../../../../components/Form/Button";
 import LoadingScreen from "../../../../components/LoadingScreen";
 import { v4 as uuidv4 } from 'uuid';
+import {GoAlert} from "react-icons/go";
 
 function SeriesModal() {
 
     const seriesModal = useSeriesModal();
-    const {mutate} = useChatQueue();
+    const {mutate, isError, error} = useChatQueue();
     const {data, isFetching} = useSeriesResult(seriesModal.seriesID);
+    const [errorMsg, setErrorMsg] = useState<string>("");
 
     const [season, setSeason] = useState<number | null>(null);
     const [episodeInput, setEpisodeInput] = useState<string | null>(null);
     const [episodes, setEpisodes] = useState<number[] | null>(null);
+
+    useEffect(() => {
+        // @ts-ignore
+        setErrorMsg(error?.response.data.message);
+
+    }, [isError])
 
     useEffect(() => {
         if(season) {
@@ -42,8 +50,16 @@ function SeriesModal() {
 
     const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
         console.log(episodeInput + "/" + season);
-        if((season && episodeInput)) mutate({seriesID: data?.id, season: season, episode: parseInt(episodeInput)});
+            if((season && episodeInput))  {
+                try {
+                    mutate({seriesID: data?.id, season: season, episode: parseInt(episodeInput)});
+                } catch(error: any) {
+                    console.log("heyLOOOL");
+                    console.log(error);
+                }
+            }
     };
 
     return (
@@ -78,9 +94,14 @@ function SeriesModal() {
                             <option value={episode}>Episode {episode}</option>
                             ))}
                         </select>
+
+                        {isError &&
+                        <div className="errorMsgContainer">
+                            <p className="errorMsg"><GoAlert id="alertIcon" />{errorMsg}</p>
+                        </div>}
+
                         <Button buttonType={"submit"} disabled={(!season || !episodeInput)} width={"max-content"}>Find a chatter</Button>
                     </form>
-
                 </div>
             </div>
 
