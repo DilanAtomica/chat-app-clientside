@@ -74,3 +74,20 @@
     cursor: pointer;
     background-color: lightgrey;
 }
+
+@media (max-width: 500px) {
+
+
+    .seriesQueue > img {
+        height: 6rem;
+    }
+
+    .seriesQueueRight > h2 {
+        font-size: 1rem;
+    }
+
+    .seriesQueueRight > h3 {
+        font-size: 0.9rem;
+    }
+}
+

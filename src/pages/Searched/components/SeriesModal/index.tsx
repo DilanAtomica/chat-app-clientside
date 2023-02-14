@@ -7,9 +7,11 @@ import Button from "../../../../components/Form/Button";
 import LoadingScreen from "../../../../components/LoadingScreen";
 import { v4 as uuidv4 } from 'uuid';
 import {GoAlert} from "react-icons/go";
+import {useNavigate} from "react-router-dom";
 
 function SeriesModal() {
 
+    const navigate = useNavigate();
     const seriesModal = useSeriesModal();
     const {mutate, isError, error} = useChatQueue();
     const {data, isFetching} = useSeriesResult(seriesModal.seriesID);
@@ -48,13 +50,14 @@ function SeriesModal() {
         }
     };
 
-    const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleOnSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         console.log(episodeInput + "/" + season);
             if((season && episodeInput))  {
                 try {
-                    mutate({seriesID: data?.id, season: season, episode: parseInt(episodeInput)});
+                    await mutate({seriesID: data?.id, season: season, episode: parseInt(episodeInput)});
+                    navigate("/profile");
                 } catch(error: any) {
                     console.log("heyLOOOL");
                     console.log(error);

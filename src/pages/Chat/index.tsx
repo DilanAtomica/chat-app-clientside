@@ -43,10 +43,14 @@ function ChatPage() {
         }
     }
 
+    const hideChatsModal = () => {
+        setShowChatsModal(false);
+    }
+
     return (
         <main className="chatPage">
             <Navbar />
-            {showChatsModal && <ChatsModal chats={data} openChat={openChat} />}
+            {showChatsModal && <ChatsModal chats={data} openChat={openChat} hideChatsModal={hideChatsModal} />}
             {(isFetchingCurrentChat || isFetchingActiveChats) && <LoadingScreen />}
             <div className="chatContainer">
                 {screenWidth > 900 &&

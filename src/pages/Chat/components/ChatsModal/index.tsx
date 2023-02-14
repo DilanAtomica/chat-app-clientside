@@ -7,9 +7,16 @@ type chatsModalProps = {
     chats: chatType,
 }
 
-function ChatsModal({chats, openChat}: any) {
+function ChatsModal({chats, openChat, hideChatsModal}: any) {
+
+    const onBackgroundClick = (e: React.MouseEvent<HTMLElement>) => {
+        if (e.target instanceof HTMLElement) {
+            if(e.target.classList.contains("chatsModalBackground")) hideChatsModal();
+        }
+    };
+
     return (
-        <div className="chatsModalBackground">
+        <div onClick={onBackgroundClick} className="chatsModalBackground">
             <div className="chatsModal">
                 {chats?.map((chat: chatType) => (
                     <ActiveChat key={chat.chatID} chatID={chat.chatID} seriesImage={chat.seriesImage} seriesName={chat.seriesName}

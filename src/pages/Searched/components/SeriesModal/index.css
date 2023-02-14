@@ -101,7 +101,7 @@
     flex-direction: row;
 }
 
-.inputContainer #alertIcon {
+.seriesContent > form > .errorMsgContainer .errorMsg #alertIcon {
     margin-right: 0.5rem;
 }
 
