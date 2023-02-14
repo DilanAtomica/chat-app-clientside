@@ -17,6 +17,22 @@ export const useAuthUser = () => {
     return useQuery(["tokenData"], () => authUser());
 }
 
+const userDetails = async() => {
+    try {
+        const userDetailsData = await axios.post("http://localhost:3001/users/userDetails",{}, {
+            withCredentials: true
+        });
+        console.log(userDetailsData);
+        return userDetailsData.data;
+    } catch(error) {
+        console.log(error);
+    }
+
+}
+export const useUserDetails = () => {
+    return useQuery(["userDetailsData"], () => userDetails());
+}
+
 
 
 

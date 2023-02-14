@@ -9,6 +9,11 @@ import { v4 as uuidv4 } from 'uuid';
 import {GoAlert} from "react-icons/go";
 import {useNavigate} from "react-router-dom";
 
+type seasonsType = {
+    name: string,
+    season_number: number,
+}
+
 function SeriesModal() {
 
     const navigate = useNavigate();
@@ -24,7 +29,6 @@ function SeriesModal() {
     useEffect(() => {
         // @ts-ignore
         setErrorMsg(error?.response.data.message);
-
     }, [isError])
 
     useEffect(() => {
@@ -52,17 +56,14 @@ function SeriesModal() {
 
     const handleOnSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        console.log(episodeInput + "/" + season);
+        try {
             if((season && episodeInput))  {
-                try {
-                    await mutate({seriesID: data?.id, season: season, episode: parseInt(episodeInput)});
-                    navigate("/profile");
-                } catch(error: any) {
-                    console.log("heyLOOOL");
-                    console.log(error);
-                }
+                await mutate({seriesID: data?.id, season: season, episode: parseInt(episodeInput)});
+                navigate("/profile");
             }
+        } catch(error: any) {
+            console.log(error)
+        }
     };
 
     return (
@@ -83,7 +84,7 @@ function SeriesModal() {
                         <select defaultValue={"Season"} onChange={(e) => setSeason(parseInt(e.target.value))}
                                 name="seasons" id="seasons">
                             <option value="Season" disabled={true}>Season</option>
-                            {data?.seasons.map((season: any) => (
+                            {data?.seasons.map((season: seasonsType) => (
                                 season.name !== "Specials" &&
                                 <option value={season.season_number}>Season {season.season_number}</option>
                             ))}
@@ -93,7 +94,7 @@ function SeriesModal() {
                         <label htmlFor="episodes">Choose an episode:</label>
                         <select defaultValue={"Episode"} disabled={season === null} onChange={(e) => setEpisodeInput(e.target.value)} name="episodes" id="episodes">
                             <option value="Episode" disabled={true}>Episode</option>
-                            {episodes?.map((episode: any) => (
+                            {episodes?.map((episode: number) => (
                             <option value={episode}>Episode {episode}</option>
                             ))}
                         </select>

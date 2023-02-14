@@ -1,0 +1,62 @@
+.notificationModalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 11;
+}
+
+.notificationModal {
+    background-color: white;
+    color: black;
+    width: max-content;
+    min-height: 30rem;
+    height: max-content;
+    border-radius: 15px;
+}
+
+.notificationModal {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.notificationModal > header {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.notificationModal > ul {
+    overflow-y: scroll;
+    flex: 1;
+    padding: 0 2rem;
+}
+
+.notificationModal > ul > li > button {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.notificationModal > ul > li > button:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+
+.notificationModal > ul > li > button > #mailIcon {
+    margin-right: 1rem;
+    font-size: 2rem;
+}
+
+.notificationModal > ul > li > button > h2 {
+    font-size: 1.2rem;
+}
+

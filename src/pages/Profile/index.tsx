@@ -45,7 +45,6 @@ function ProfilePage() {
                     </li>
                 ))}
             </ul>
-
         </div>
     );
 }
