@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "./index.css";
 import {notification} from "../../types";
-import {getWrittenDate} from "../../../../utils/dateFormat";
-import {HiOutlineMail} from "react-icons/hi";
+import {BsArrowLeft} from "react-icons/bs";
+import {useReadNotification} from "../../hooks/api";
+import Notification from "./components/Notification";
 
 type notificationModalTypes = {
     notifications: notification[],
@@ -11,25 +12,39 @@ type notificationModalTypes = {
 
 function NotificationModal({notifications, hideNotificModal}: notificationModalTypes) {
 
+    const {mutate} = useReadNotification();
+
+    const [notificText, setNotificText] = useState<null | string>(null);
+
     const onBackgroundClick = (e: React.MouseEvent<HTMLElement>) => {
         if (e.target instanceof HTMLElement) {
             if(e.target.classList.contains("notificationModalBackground")) hideNotificModal();
         }
     };
 
+    const openNotification = (notificMsg: string, notificID: number, isRead: number) => {
+        setNotificText(notificMsg);
+        mutate({notificID: notificID, isRead: isRead});
+    }
+
     return (
         <div onClick={onBackgroundClick} className="notificationModalBackground">
             <div className="notificationModal">
                 <header>
-                    <h1>Notifications</h1>
+                    {!notificText
+                        ? <h1>Notifications</h1>
+                        : <button onClick={() => setNotificText(null)} type="button"><BsArrowLeft id="backIcon"/> Go back</button>
+                    }
                 </header>
-                <ul>
-                    {notifications?.map((notific: any) => (
-                        <li key={notific.notificID}>
-                            <button><HiOutlineMail id="mailIcon" /><h2>{getWrittenDate(notific.created_at)}</h2></button>
-                        </li>
+                {!notificText ? <ul>
+                    {notifications?.map((notific: notification) => (
+                        <Notification key={notific.notificID} created_at={notific.created_at} notificID={notific.notificID} notificMsg={notific.notificMsg}
+                                      isRead={notific.isRead} userID={notific.userID} openNotification={openNotification} />
                     ))}
                 </ul>
+                : <p>{notificText}</p>
+                }
+
             </div>
         </div>
     );

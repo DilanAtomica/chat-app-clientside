@@ -32,6 +32,11 @@ nav > ul {
     display: flex;
 }
 
+nav > ul > li {
+    position: relative;
+    margin-right: 1rem;
+}
+
 nav > ul > li > button {
     background: none;
     width: max-content;
@@ -40,6 +45,20 @@ nav > ul > li > button {
     justify-content: center;
     color: white;
     font-size: 1.5rem;
-    margin-right: 1rem;
     cursor: pointer;
+}
+
+.notificationCounter {
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0F62FE;
+    color: white;
+    position: absolute;
+    border-radius: 100px;
+    right: -0.2rem;
+    top: -0.2rem;
+    font-size: 0.8rem;
 }

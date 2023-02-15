@@ -1,0 +1,22 @@
+.notificationModal > ul > li > button {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.notificationModal > ul > li > button:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+
+.notificationModal > ul > li > button > #mailIcon {
+    margin-right: 1rem;
+    font-size: 2rem;
+}
+
+.notificationModal > ul > li > button > h2 {
+    font-size: 1.2rem;
+}

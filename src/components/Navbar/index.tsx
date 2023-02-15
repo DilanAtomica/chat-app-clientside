@@ -7,7 +7,7 @@ import {FaUserAlt} from "react-icons/fa"
 import {AiFillHome} from "react-icons/ai";
 import NotificationModal from "./components/NotificationModal";
 import {useNotifications} from "./hooks/api";
-import {BsMailbox} from "react-icons/bs";
+import {AiOutlineMail} from "react-icons/ai";
 
 
 function Navbar() {
@@ -25,12 +25,15 @@ function Navbar() {
     return (
         <nav>
             {showNotificationsModal && <NotificationModal notifications={data} hideNotificModal={hideNotificModal} />}
-            <button><img onClick={() => navigate("/home")} alt="logo" src={Logo} /></button>
+            <button type="button"><img onClick={() => navigate("/home")} alt="logo" src={Logo} /></button>
             <ul>
-                <li><button><BsMailbox onClick={() => setShowNotificationsModal(true)} className="navIcon" /></button></li>
-                <li><button><AiOutlineWechat onClick={() => navigate("/chat")} className="navIcon" /></button></li>
-                <li><button><FaUserAlt onClick={() => navigate("/profile")} className="navIcon" /></button></li>
-                <li><button><AiFillHome onClick={() => navigate("/home")} className="navIcon" /></button></li>
+                <li>
+                    <div className="notificationCounter">{data?.length}</div>
+                    <button type="button" onClick={() => setShowNotificationsModal(true)}><AiOutlineMail className="navIcon" /></button>
+                </li>
+                <li><button type="button" onClick={() => navigate("/chat")}><AiOutlineWechat className="navIcon" /></button></li>
+                <li><button type="button" onClick={() => navigate("/profile")}><FaUserAlt className="navIcon" /></button></li>
+                <li><button type="button" onClick={() => navigate("/home")}><AiFillHome className="navIcon" /></button></li>
             </ul>
         </nav>
     );
