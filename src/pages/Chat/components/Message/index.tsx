@@ -10,7 +10,7 @@ type messageType = {
 
 function Message({children, messageSent, dateSent}: messageType) {
     return (
-        <div style={{justifyContent: messageSent ? "flex-end" : "flex-start"}} className="chatWindowMessageContainer">
+        <div role="message" style={{justifyContent: messageSent ? "flex-end" : "flex-start"}} className="chatWindowMessageContainer">
             <div className="chatWindowMessage">
                 <p className="message"
                    style={{

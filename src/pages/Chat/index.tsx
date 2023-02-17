@@ -31,7 +31,6 @@ function ChatPage() {
     const openChat = (chatID: number) => {
         setCurrentChatID(chatID);
         setShowChatsModal(false);
-        console.log("sup");
     }
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -72,7 +71,7 @@ function ChatPage() {
                         {currentChatData &&
                             <><img alt={currentChatData.seriesName} src={"https://image.tmdb.org/t/p/w500" + currentChatData?.seriesImage}/>
                                 <ul>
-                                    <li>{currentChatData.chatID}</li>
+                                    <li>{currentChatData.seriesName}</li>
                                     <li>· Season {currentChatData.seriesSeason} · Episode {currentChatData.seriesEpisode} ·</li>
                                     <li>Chatting with {currentChatData?.otherUserName}</li>
                                 </ul>
