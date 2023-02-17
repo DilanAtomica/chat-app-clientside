@@ -82,4 +82,29 @@ export const handlers = [
             ])
         )
     }),
+
+    rest.post("http://localhost:3001/chats/chatsData", (req, res, ctx) => {
+        return res(
+            ctx.json([
+                {
+                    chatID: 16,
+                    created_at: "2023-02-10T16:17:46.000Z",
+                    otherUserName: "vidar",
+                    seriesEpisode: "8",
+                    seriesImage: "/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg",
+                    seriesName: "Game of Thrones",
+                    seriesSeason: "4"
+                },
+                {
+                    chatID: 18,
+                    created_at: "2023-02-10T16:18:42.000Z",
+                    otherUserName: "vidar",
+                    seriesEpisode: "1",
+                    seriesImage: "/zaulpwl355dlKkvtAiSBE5LaoWA.jpg",
+                    seriesName: "The Walking Dead",
+                    seriesSeason: "1"
+                }
+            ])
+        )
+    }),
 ]

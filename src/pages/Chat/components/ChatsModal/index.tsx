@@ -16,7 +16,7 @@ function ChatsModal({chats, openChat, hideChatsModal}: any) {
     };
 
     return (
-        <div onClick={onBackgroundClick} className="chatsModalBackground">
+        <div role="chatsModal" onClick={onBackgroundClick} className="chatsModalBackground">
             <div className="chatsModal">
                 {chats?.map((chat: chatType) => (
                     <ActiveChat key={chat.chatID} chatID={chat.chatID} seriesImage={chat.seriesImage} seriesName={chat.seriesName}

@@ -78,7 +78,8 @@ function ChatPage() {
                                 </ul>
                             </>}
                         {screenWidth < 900 &&
-                            <Button onClick={() => setShowChatsModal(true)} margin={"0"} buttonType={"button"} disabled={false} width={"max-content"}>Chats</Button>
+                            <Button onClick={() => setShowChatsModal(true)} margin={"0"} buttonType={"button"}
+                                    disabled={false} width={"max-content"}>Chats</Button>
                         }
                     </header>
 
