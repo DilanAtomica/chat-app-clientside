@@ -22,8 +22,9 @@ const userDetails = async() => {
         const userDetailsData = await axios.post("http://localhost:3001/users/userDetails",{}, {
             withCredentials: true
         });
-        console.log(userDetailsData);
-        return userDetailsData.data;
+        console.log(userDetailsData.data);
+        if(userDetailsData.data) return userDetailsData.data;
+        else return null;
     } catch(error) {
         console.log(error);
     }

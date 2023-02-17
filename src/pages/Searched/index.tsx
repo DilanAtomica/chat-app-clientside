@@ -80,9 +80,8 @@ function SearchedPage() {
                 {pages && page && parseInt(page) !== data?.total_pages &&
                     <li><button onClick={onNextPrevClick} id="nextBtn" type="button" className="backForthBtn">Next</button></li>}
             </ul>
-
             <ul className="movies">
-                {data?.results.map((movie: { id: number, poster: string, name: string, poster_path: string }) => (
+                {data?.results.map((movie: { id: number, name: string, poster_path: string }) => (
                     <Poster key={movie.id} id={movie.id} poster={movie.poster_path} name={movie.name} />
                 ))}
             </ul>

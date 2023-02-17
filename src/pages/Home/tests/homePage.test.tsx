@@ -15,17 +15,13 @@ const MockHomePage = () => {
     )
 };
 
-describe("Home Page", () => {
-    it("Should type value in search field", () => {
-        render(<MockHomePage />);
-        const searchField = screen.getByRole("searchField");
-        expect(searchField).toBeInTheDocument();
-        fireEvent.change(searchField, {target: {value: 'Game'}})
-        expect(searchField).toHaveValue("Game");
-        const submitBtn = screen.getByRole("submitBtn");
-        expect(submitBtn).toBeInTheDocument();
-        expect(submitBtn).toBeEnabled();
-
-    });
-
+test("Should type value in search field", () => {
+    render(<MockHomePage />);
+    const searchField = screen.getByRole("searchField");
+    expect(searchField).toBeInTheDocument();
+    fireEvent.change(searchField, {target: {value: 'Game'}})
+    expect(searchField).toHaveValue("Game");
+    const submitBtn = screen.getByRole("submitBtn");
+    expect(submitBtn).toBeInTheDocument();
+    expect(submitBtn).toBeEnabled();
 });

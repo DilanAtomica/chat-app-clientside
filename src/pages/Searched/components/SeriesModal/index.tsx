@@ -72,21 +72,21 @@ function SeriesModal() {
             <div className="seriesModal">
                 <header>
                     <button onClick={() => seriesModal.deActivateSeriesModal()} type="button"><RxCross1 id="exitIcon" /></button>
-                    <h1>{data?.name}</h1>
+                    <h1 role="postModalHeader">{data?.name}</h1>
                 </header>
 
                 <div className="seriesContent">
-                    <img src={data?.backdrop_path ? "https://image.tmdb.org/t/p/w500" + data.backdrop_path : "https://upload.wikimedia.org/wikipedia/commons/b/b1/Missing-image-232x150.png"}
+                    <img role="seriesModalImg" src={data?.backdrop_path ? "https://image.tmdb.org/t/p/w500" + data.backdrop_path : "https://upload.wikimedia.org/wikipedia/commons/b/b1/Missing-image-232x150.png"}
                          alt={data?.name} />
 
                     <form onSubmit={handleOnSubmit}>
                         <label htmlFor="episodes">Choose a season:</label>
-                        <select defaultValue={"Season"} onChange={(e) => setSeason(parseInt(e.target.value))}
+                        <select role="seasonSelect" defaultValue={"Season"} onChange={(e) => setSeason(parseInt(e.target.value))}
                                 name="seasons" id="seasons">
                             <option value="Season" disabled={true}>Season</option>
                             {data?.seasons.map((season: seasonsType) => (
                                 season.name !== "Specials" &&
-                                <option value={season.season_number}>Season {season.season_number}</option>
+                                <option role="seasonOption" value={season.season_number}>Season {season.season_number}</option>
                             ))}
                         </select>
 
@@ -95,7 +95,7 @@ function SeriesModal() {
                         <select defaultValue={"Episode"} disabled={season === null} onChange={(e) => setEpisodeInput(e.target.value)} name="episodes" id="episodes">
                             <option value="Episode" disabled={true}>Episode</option>
                             {episodes?.map((episode: number) => (
-                            <option value={episode}>Episode {episode}</option>
+                            <option role="episodeOption" value={episode}>Episode {episode}</option>
                             ))}
                         </select>
 
