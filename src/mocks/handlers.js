@@ -49,4 +49,11 @@ export const handlers = [
             })
         )
     }),
+    rest.post("http://localhost:3001/chats/activeChatQueues", (req, res, ctx) => {
+        return res(
+            ctx.json({
+
+            })
+        )
+    }),
 ]

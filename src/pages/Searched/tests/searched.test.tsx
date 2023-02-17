@@ -28,7 +28,7 @@ const MockSearchedPage = () => {
         fireEvent.click(submitBtn);
     });
 
-test.only("Renders poster with image and name and renders series modal after click", async() => {
+test("Renders poster with image and name and renders series modal after click", async() => {
 
     const user = userEvent.setup();
 
