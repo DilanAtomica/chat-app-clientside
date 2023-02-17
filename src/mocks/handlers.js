@@ -51,7 +51,15 @@ export const handlers = [
     }),
     rest.post("http://localhost:3001/chats/activeChatQueues", (req, res, ctx) => {
         return res(
-            ctx.json({})
+            ctx.json([{
+                chatQueueID: 22,
+                created_at: "2023-02-14T14:26:28.000Z",
+                episode: 1,
+                image: "/f49nYnZUowcVKCOC1FRFkKDR7bg.jpg",
+                name: "Game Shakers",
+                season: 1,
+                seriesID: 64264,
+            }])
         )
     }),
 ]
