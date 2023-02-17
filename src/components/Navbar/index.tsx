@@ -43,8 +43,8 @@ function Navbar() {
             <button type="button"><img onClick={() => navigate("/home")} alt="logo" src={Logo} /></button>
             <ul>
                 <li>
-                    <div className="notificationCounter">{unReadNotifics}</div>
-                    <button type="button" onClick={() => setShowNotificationsModal(true)}><AiOutlineMail className="navIcon" /></button>
+                    <div role="unReadNotifics" className="notificationCounter">{unReadNotifics}</div>
+                    <button role="notificationsBtn" type="button" onClick={() => setShowNotificationsModal(true)}><AiOutlineMail className="navIcon" /></button>
                 </li>
                 <li><button type="button" onClick={() => navigate("/chat")}><AiOutlineWechat className="navIcon" /></button></li>
                 <li><button type="button" onClick={() => navigate("/profile")}><FaUserAlt className="navIcon" /></button></li>

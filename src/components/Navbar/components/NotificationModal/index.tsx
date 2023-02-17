@@ -42,7 +42,7 @@ function NotificationModal({notifications, hideNotificModal}: notificationModalT
                                       isRead={notific.isRead} userID={notific.userID} openNotification={openNotification} />
                     ))}
                 </ul>
-                : <p>{notificText}</p>
+                : <p role="notificMsg">{notificText}</p>
                 }
 
             </div>

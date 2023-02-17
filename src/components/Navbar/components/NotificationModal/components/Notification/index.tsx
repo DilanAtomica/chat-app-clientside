@@ -12,9 +12,9 @@ function Notification({notificMsg, notificID, isRead, created_at, userID, openNo
 
     return (
         <li>
-            <button onClick={onClick} type="button">
+            <button role="notification" onClick={onClick} type="button">
                 {isRead === 1  ? <HiOutlineMailOpen id="mailIcon" /> : <HiOutlineMail id="mailIcon" />}
-                <h2>{getWrittenDate(created_at)}</h2>
+                <h2 role="notificDate">{getWrittenDate(created_at)}</h2>
             </button>
         </li>
     );

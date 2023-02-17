@@ -62,4 +62,24 @@ export const handlers = [
             }])
         )
     }),
+    rest.post("http://localhost:3001/chats/notifications", (req, res, ctx) => {
+        return res(
+            ctx.json([
+                {
+                created_at: "2023-02-13T15:32:02.000Z",
+                isRead: 1,
+                notificID: 1,
+                notificMsg: "A chat for a dicussion of The Walking Dead season 1, episode 1 has been made",
+                userID: 61
+            },
+                {
+                    created_at: "2023-02-14T15:31:02.000Z",
+                    isRead: 0,
+                    notificID: 2,
+                    notificMsg: "A chat for a dicussion of Game of Thrones season 1, episode 1 has been made",
+                    userID: 61
+                },
+            ])
+        )
+    }),
 ]
