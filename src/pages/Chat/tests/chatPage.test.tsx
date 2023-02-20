@@ -50,7 +50,7 @@ test("Should shoe chats and click on one to open chat modal", async() => {
 
 });
 
-test.only("Should show messages in chat window for the chat that was clicked in chat modal", async() => {
+test("Should show messages in chat window for the chat that was clicked in chat modal", async() => {
     const user = userEvent.setup();
     render(<MockChatPage />);
 
