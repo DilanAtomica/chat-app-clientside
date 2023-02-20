@@ -12,7 +12,7 @@ function Message({children, messageSent, dateSent}: messageType) {
     return (
         <div role="message" style={{justifyContent: messageSent ? "flex-end" : "flex-start"}} className="chatWindowMessageContainer">
             <div className="chatWindowMessage">
-                <p className="message"
+                <p role="msgText" className="message"
                    style={{
                        backgroundColor: messageSent ? "rgba(15,98,254, 1)" : "rgba(239,239,239, 0.8)",
                        color: messageSent ? "white" : "black",
@@ -21,7 +21,7 @@ function Message({children, messageSent, dateSent}: messageType) {
                    }}>
                     {children}
                 </p>
-                <p className="messageDate" style={{margin: "0 0 1rem 1rem"}}>{dateSent}</p>
+                <p role="dateSent" className="messageDate" style={{margin: "0 0 1rem 1rem"}}>{dateSent}</p>
             </div>
         </div>
     );

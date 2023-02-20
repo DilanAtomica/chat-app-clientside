@@ -79,7 +79,7 @@ test.only("Should show messages in chat window for the chat that was clicked in 
     const episodeAndSeason = await (await screen.findAllByRole('listitem')).find(listitem => listitem.textContent === '· Season 4 · Episode 8 ·');
     expect(episodeAndSeason).toBeInTheDocument();
 
-    //Check that messages are renderd and have proper background colors
+    //Check that messages are rendered and have proper background colors
     const msgSent = await screen.getByText("skjera");
     expect(msgSent).toBeInTheDocument();
     expect(msgSent).toHaveStyle({backgroundColor: "rgba(15,98,254, 1)"});
@@ -88,10 +88,33 @@ test.only("Should show messages in chat window for the chat that was clicked in 
     expect(msgReceived).toHaveStyle({backgroundColor: "rgba(239,239,239, 0.8)"});
 
 
+    //Checks that messages are rendered
     const messages = await screen.findAllByRole("message");
     expect(messages[0]).toBeInTheDocument()
+    expect(messages[1]).toBeInTheDocument();
 
-    //const message = await (await screen.findAllByRole('paragraph')).find(paragraph => paragraph.textContent === 'skjera');
-    //expect(message).toBeInTheDocument();
+
+    //Checks that shows message and has right style and text
+    const message = await screen.findAllByRole("msgText");
+    expect(message[0]).toHaveTextContent("skjera");
+    expect(message[0]).toHaveStyle({
+        backgroundColor: "rgba(15,98,254, 1)",
+        color: "white",
+        borderRadius: "15px 15px 0 15px",
+        margin: "0 0 0.5rem 1rem"
+    });
+
+    expect(message[1]).toHaveTextContent("ikke stort");
+    expect(message[1]).toHaveStyle({
+        backgroundColor: "rgba(239,239,239, 0.8)",
+        color: "black",
+        borderRadius: "15px 15px 15px 0",
+        margin: "0 0 0.5rem 1rem",
+    });
+
+    //Checks that messages shows correct dates
+    const dates = await screen.findAllByRole("dateSent");
+    expect(dates[0]).toHaveTextContent("14.11.2023");
+    expect(dates[1]).toHaveTextContent("14.11.2023");
 
 });
