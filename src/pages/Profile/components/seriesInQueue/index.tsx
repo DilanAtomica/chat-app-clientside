@@ -3,7 +3,7 @@ import "./index.css";
 import {BsTrashFill} from "react-icons/bs";
 import seriesType from "../../index";
 
-type seriesType = {
+type seriesInQueueProps = {
     chatQueueID: number,
     seriesID: number,
     name: string,
@@ -14,7 +14,7 @@ type seriesType = {
     deleteQueuedSeries: (chatQueueID: number) => void,
 }
 
-function SeriesInQueue({chatQueueID, name, image, season, episode, deleteQueuedSeries} : seriesType) {
+function SeriesInQueue({chatQueueID, name, image, season, episode, deleteQueuedSeries} : seriesInQueueProps) {
 
     const onClick = () => {
         deleteQueuedSeries(chatQueueID);

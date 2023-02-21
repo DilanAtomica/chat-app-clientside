@@ -15,10 +15,12 @@ const MockPoster = () => {
     )
 };
 
-test("Should display name and image", () => {
+test("Should display name and image with correct attributes", () => {
     render(<MockPoster />);
-    const posterImg =  screen.getByRole("img", {name: "Game of Thrones"});
+    const posterImg =  screen.getByRole("img");
     expect(posterImg).toBeInTheDocument();
+    expect(posterImg).toHaveAttribute("src", "https://image.tmdb.org/t/p/w500/xYTnihl7qffiLSZ6yLMSpBkPdXC.jpg");
+    expect(posterImg).toHaveAttribute("alt", "Game of Thrones");
 
     const posterName =  screen.getByText("Game of Thrones");
     expect(posterName).toBeInTheDocument();

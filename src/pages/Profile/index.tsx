@@ -3,7 +3,6 @@ import "./index.css";
 import Navbar from "../../components/Navbar";
 import {useActiveChatQueues, useDeleteChatQueue} from "./hooks/api";
 import LoadingScreen from "../../components/LoadingScreen";
-import {BsTrashFill} from "react-icons/bs";
 import SeriesInQueue from "./components/seriesInQueue";
 
 type seriesType = {
@@ -18,7 +17,7 @@ type seriesType = {
 
 function ProfilePage() {
 
-    const {data, isFetching, refetch} = useActiveChatQueues();
+    const {data, isFetching} = useActiveChatQueues();
     const {mutate} = useDeleteChatQueue();
 
     const deleteQueuedSeries = (chatQueueID: number) => {
@@ -32,13 +31,11 @@ function ProfilePage() {
             {isFetching && <LoadingScreen />}
             <Navbar />
             <h1>Pending Chats</h1>
-
             <ul className="activeSeriesQueues">
                 {data?.map((series: seriesType) => (
                     <SeriesInQueue key={series.chatQueueID} chatQueueID={series.chatQueueID} seriesID={series.seriesID} name={series.name}
                                    image={series.image} season={series.season} episode={series.episode} created_at={series.created_at}
                                    deleteQueuedSeries={deleteQueuedSeries} />
-
                 ))}
             </ul>
         </div>
