@@ -21,20 +21,20 @@ function SearchedPage() {
     const [inputValue, setInputValue] = useState("");
     const [pages, setPages] = useState<number[] | null>(null);
 
-    const onSubmit = () => {
-        navigate("/search/" + inputValue + "/" + 1);
-    };
+    const onSubmit = () => navigate("/search/" + inputValue + "/" + 1);
 
     useEffect(() => {
-        if(page) {
-            const currentPage = parseInt(page);
-            let pages: number[] = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2, + currentPage +3];
-            pages = pages.filter(page => page > 0);
-            pages = pages.filter(page => page <= data?.total_pages);
-            setPages(pages);
-            console.log("Useffect: SearchedPage");
-        }
+        if(page) setPages(getPages(page));
+        console.log("Useffect: SearchedPage");
     }, [data]);
+
+    const getPages = (page: string) => {
+        const currentPage = parseInt(page);
+        let pages: number[] = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2, + currentPage +3];
+        pages = pages.filter(page => page > 0);
+        pages = pages.filter(page => page <= data?.total_pages);
+        return pages;
+    }
 
     const onPageClick = (e: React.MouseEvent<HTMLElement>) => {
         const pageNumber = e.currentTarget.innerHTML;

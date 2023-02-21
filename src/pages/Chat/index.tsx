@@ -42,9 +42,8 @@ function ChatPage() {
         }
     }
 
-    const hideChatsModal = () => {
-        setShowChatsModal(false);
-    }
+    const hideChatsModal = () => setShowChatsModal(false);
+
 
     return (
         <main className="chatPage">

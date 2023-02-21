@@ -11,9 +11,8 @@ function HomePage() {
 
     const navigate = useNavigate();
 
-    const onSubmit = () => {
-        navigate("/search/" + inputValue + "/" + 1);
-    }
+    const onSubmit = () => navigate("/search/" + inputValue + "/" + 1);
+
 
     return (
         <main onSubmit={onSubmit} className="homePage">
