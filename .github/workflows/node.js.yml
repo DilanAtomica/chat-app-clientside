@@ -32,5 +32,8 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Run the tests
+    - name: Run unit and integration tests
       run: npm run test
+
+    - name: Run end 2 end tests
+      run: npx playwright test
