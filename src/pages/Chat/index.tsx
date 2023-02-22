@@ -20,8 +20,8 @@ function ChatPage() {
 
     const {screenWidth} = useScreenWidth();
 
-    const [trigger, setTrigger] = useState(false);
-    const [inputValue, setInputValue] = useState("");
+    const [trigger, setTrigger] = useState<boolean>(false);
+    const [inputValue, setInputValue] = useState<string>("");
     const [showChatsModal, setShowChatsModal] = useState<boolean>(false);
 
     useEffect(() => {
@@ -96,7 +96,6 @@ function ChatPage() {
                             <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} type="text" placeholder="Send a message..." />
                             <Button buttonType={"submit"} disabled={false} width={"max-content"}>Send</Button>
                         </form>}
-
                 </div>
             </div>
         </main>

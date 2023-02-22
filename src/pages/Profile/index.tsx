@@ -21,7 +21,6 @@ function ProfilePage() {
     const {mutate} = useDeleteChatQueue();
 
     const deleteQueuedSeries = (chatQueueID: number) => {
-        console.log(chatQueueID)
         mutate(chatQueueID);
         window.location.reload();
     }

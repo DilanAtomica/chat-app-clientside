@@ -6,7 +6,7 @@ import LoadingScreen from "../components/LoadingScreen";
 function ProtectedRoutes() {
     const {data, isFetching} = useAuthUser();
     return (
-        isFetching ? <LoadingScreen /> : data?.data.authenticated ? <Outlet /> : <Navigate to="/login"/>
+        isFetching ? <LoadingScreen /> : data?.authenticated ? <Outlet /> : <Navigate to="/login"/>
     );
 }
 

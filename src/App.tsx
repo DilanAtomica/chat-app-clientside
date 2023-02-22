@@ -12,7 +12,6 @@ function App() {
 
     useEffect(() => {
         changeWidth(window.innerWidth);
-        changeWidth(window.innerWidth);
         function handleWindowResize() {
             changeWidth(window.innerWidth);
         }
@@ -23,7 +22,6 @@ function App() {
             window.removeEventListener('resize', handleWindowResize);
         };
     }, []);
-
 
     return (
       <AppProvider>

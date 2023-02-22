@@ -1,6 +1,11 @@
 import {rest} from "msw";
 
 export const handlers = [
+    rest.post("http://localhost:3001/users/auth", (req, res, ctx) => {
+        return res(
+            ctx.json({authenticated: true})
+        )
+    }),
     rest.post("http://localhost:3001/users/userDetails", (req, res, ctx) => {
         return res(
             ctx.json({userID: 1, email: "dilan@hotmail.com", username: "dilan"})

@@ -6,8 +6,8 @@ const authUser = async() => {
         const tokenData = await axios.post("http://localhost:3001/users/auth",{}, {
             withCredentials: true
         });
-        console.log(tokenData);
-        return tokenData;
+        console.log(tokenData.data);
+        return tokenData.data;
     } catch(error) {
         console.log(error);
     }

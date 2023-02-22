@@ -8,8 +8,6 @@ import {AiFillHome} from "react-icons/ai";
 import NotificationModal from "./components/NotificationModal";
 import {useNotifications} from "./hooks/api";
 import {AiOutlineMail} from "react-icons/ai";
-import {notification} from "./types";
-
 
 function Navbar() {
 
@@ -22,20 +20,18 @@ function Navbar() {
     const [showNotificationsModal, setShowNotificationsModal] = useState(false);
 
     useEffect(() => {
-        if(data) {
-            let unReadNotific = 0
-            for(let i = 0; i < data?.length; i++) {
-                if(data[i].isRead === 0) unReadNotific = unReadNotific + 1;
-            }
-            setUnReadNotifics(unReadNotific)
-        }
+        if(data) setUnReadNotifics(getUnreadNotifications());
     }, [data]);
 
-    const hideNotificModal = () => {
-        setShowNotificationsModal(false);
-    };
+    const hideNotificModal = () => setShowNotificationsModal(false);
 
-
+    const getUnreadNotifications = () => {
+        let unReadNotific = 0
+        for(let i = 0; i < data?.length; i++) {
+            if(data[i].isRead === 0) unReadNotific = unReadNotific + 1;
+        }
+        return unReadNotific;
+    }
 
     return (
         <nav>
@@ -44,7 +40,9 @@ function Navbar() {
             <ul>
                 <li>
                     <div role="unReadNotifics" className="notificationCounter">{unReadNotifics}</div>
-                    <button role="notificationsBtn" type="button" onClick={() => setShowNotificationsModal(true)}><AiOutlineMail className="navIcon" /></button>
+                    <button role="notificationsBtn" type="button"
+                            onClick={() => setShowNotificationsModal(true)}><AiOutlineMail className="navIcon" />
+                    </button>
                 </li>
                 <li><button type="button" onClick={() => navigate("/chat")}><AiOutlineWechat className="navIcon" /></button></li>
                 <li><button type="button" onClick={() => navigate("/profile")}><FaUserAlt className="navIcon" /></button></li>
