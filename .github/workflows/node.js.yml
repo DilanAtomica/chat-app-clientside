@@ -35,8 +35,11 @@ jobs:
     - name: Run unit and integration tests
       run: npm run test src/
 
-    - name: Installing chromium browser for e2e
+    - name: Installing browsers for e2e
       run: npx playwright install --with-deps
+
+    - name: npm run client
+      run: npm run dev & wait-on http://localhost:3000
 
     - name: Run end 2 end tests
       run: npx playwright test
