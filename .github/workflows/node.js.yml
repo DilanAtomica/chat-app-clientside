@@ -33,7 +33,7 @@ jobs:
       run: npm install
 
     - name: Run unit and integration tests
-      run: npm run test
+      run: npm run test src/
 
     - name: Run end 2 end tests
       run: npx playwright test
