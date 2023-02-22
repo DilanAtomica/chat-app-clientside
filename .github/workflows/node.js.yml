@@ -40,7 +40,7 @@ jobs:
 
     - name: run client
       run: |
-        npm run dev
+        npm run dev &
 
     - name: Run end 2 end tests
       run: |
