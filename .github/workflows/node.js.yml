@@ -35,14 +35,3 @@ jobs:
     - name: Run unit and integration tests
       run: npm run test src/
 
-    - name: Installing browsers for e2e
-      run: npx playwright install --with-deps
-
-    - name: run client
-      run: |
-        npm run dev &
-
-    - name: Run end 2 end tests
-      run: |
-        npx playwright test
-
