@@ -39,8 +39,10 @@ jobs:
       run: npx playwright install --with-deps
 
     - name: run client
-      run: npm run dev
+      run: |
+        npm run dev
 
     - name: Run end 2 end tests
-      run: npx playwright test
+      run: |
+        npx playwright test
 
