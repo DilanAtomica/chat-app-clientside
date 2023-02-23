@@ -8,6 +8,7 @@ import {AiFillHome} from "react-icons/ai";
 import NotificationModal from "./components/NotificationModal";
 import {useNotifications} from "./hooks/api";
 import {AiOutlineMail} from "react-icons/ai";
+import LogoutModal from "./components/LogoutModal";
 
 function Navbar() {
 
@@ -18,6 +19,7 @@ function Navbar() {
     const [unReadNotifics, setUnReadNotifics] = useState<number>(0)
 
     const [showNotificationsModal, setShowNotificationsModal] = useState(false);
+    const [avatarClicked, setAvatarClicked] = useState(false);
 
     useEffect(() => {
         if(data) setUnReadNotifics(getUnreadNotifications());
@@ -31,6 +33,21 @@ function Navbar() {
             if(data[i].isRead === 0) unReadNotific = unReadNotific + 1;
         }
         return unReadNotific;
+    };
+
+    const handleAvatarClick = () => {
+        setAvatarClicked(true);
+        // @ts-ignore
+        document.addEventListener("mousedown", (unClickAvatar));
+        function unClickAvatar(e: React.MouseEvent<HTMLElement>) {
+            if (e.target instanceof HTMLElement && e.target.parentElement) {
+                if((e.target.id !== "logoutModal" && e.target.parentElement.id !== "logoutModal")) {
+                    setAvatarClicked(false);
+                    // @ts-ignore
+                    document.removeEventListener("mousedown", (unClickAvatar));
+                }
+            }
+        }
     }
 
     return (
@@ -45,7 +62,10 @@ function Navbar() {
                     </button>
                 </li>
                 <li><button type="button" onClick={() => navigate("/chat")}><AiOutlineWechat className="navIcon" /></button></li>
-                <li><button type="button" onClick={() => navigate("/profile")}><FaUserAlt className="navIcon" /></button></li>
+                <li>
+                    <button type="button" onClick={handleAvatarClick}><FaUserAlt className="navIcon" /></button>
+                    {avatarClicked && <LogoutModal />}
+                </li>
                 <li><button type="button" onClick={() => navigate("/home")}><AiFillHome className="navIcon" /></button></li>
             </ul>
         </nav>

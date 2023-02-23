@@ -1,0 +1,17 @@
+.logoutModal {
+    background-color: rgb(10,22,40);
+    position: absolute;
+    right: -3rem;
+    top: 2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 15px 15px
+}
+
+.logoutModal > button {
+    padding: 0.25rem 0.75rem !important;
+    margin: 0 !important;
+}
+
+.logoutModal > button:first-child {
+    margin-bottom: 0.5rem !important;
+}
