@@ -49,6 +49,18 @@ export const useMessage = () => {
     return useMutation(["messageMutation"], (messageData: sendMessageType) => message(messageData));
 }
 
+const leaveChat = async(chatID: number | null) => {
+    try {
+        return await axios.post("http://localhost:3001/chats/leaveChat",{chatID}, {withCredentials: true});
+    } catch(error) {
+        console.log(error);
+    }
+
+}
+export const useLeaveChat = () => {
+    return useMutation(["leaveChatMutation"], (chatID: number | null) => leaveChat(chatID));
+}
+
 
 
 

@@ -101,6 +101,20 @@
     font-size: 0.9rem !important;
 }
 
+.chatWindow > button {
+    font-weight: 700;
+    color: white;
+    background-color: rgba(15,98,254, 1);
+    border: none;
+    transition: 0.2s;
+    padding: 0.25rem 0;
+}
+
+.chatWindow > button:hover {
+    cursor: pointer;
+    background-color: rgba(15,98,254, 0.8);
+}
+
 @media (max-width: 900px) {
     .chatContainer {
         width: 90%;

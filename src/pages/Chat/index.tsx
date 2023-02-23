@@ -3,7 +3,7 @@ import "./index.css";
 import Navbar from "../../components/Navbar";
 import {AiOutlineMessage} from "react-icons/ai";
 import Button from "../../components/Form/Button";
-import {useChats, useChat, useMessage} from "./hooks/api";
+import {useChats, useChat, useMessage, useLeaveChat} from "./hooks/api";
 import ActiveChat from "./components/ActiveChat";
 import {chatType, messageType} from "./types";
 import Message from "./components/Message";
@@ -17,6 +17,7 @@ function ChatPage() {
     const [currentChatID, setCurrentChatID] = useState<null | number>(null);
     const {data: currentChatData, refetch, isFetching: isFetchingCurrentChat} = useChat(currentChatID);
     const {mutate} = useMessage();
+    const {mutate: leaveChatMutation} = useLeaveChat();
 
     const {screenWidth} = useScreenWidth();
 
@@ -43,6 +44,11 @@ function ChatPage() {
     }
 
     const hideChatsModal = () => setShowChatsModal(false);
+
+    const leaveChat = () => {
+        leaveChatMutation(currentChatID);
+        refetch();
+    }
 
 
     return (
@@ -96,6 +102,8 @@ function ChatPage() {
                             <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} type="text" placeholder="Send a message..." />
                             <Button buttonType={"submit"} disabled={false} width={"max-content"}>Send</Button>
                         </form>}
+
+                    {currentChatID && <button onClick={leaveChat} type="button">Leave chat</button>}
                 </div>
             </div>
         </main>
