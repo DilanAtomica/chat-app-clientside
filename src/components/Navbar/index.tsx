@@ -6,7 +6,7 @@ import {AiOutlineWechat} from "react-icons/ai";
 import {FaUserAlt} from "react-icons/fa"
 import {AiFillHome} from "react-icons/ai";
 import NotificationModal from "./components/NotificationModal";
-import {useNotifications} from "./hooks/api";
+import {useLogout, useNotifications} from "./hooks/api";
 import {AiOutlineMail} from "react-icons/ai";
 import LogoutModal from "./components/LogoutModal";
 
@@ -15,6 +15,7 @@ function Navbar() {
     const navigate = useNavigate();
 
     const {data} = useNotifications();
+    const {mutate} = useLogout();
 
     const [unReadNotifics, setUnReadNotifics] = useState<number>(0)
 
@@ -50,6 +51,16 @@ function Navbar() {
         }
     }
 
+    const visitProfile = () => {
+        console.log("running")
+        navigate("/profile");
+    }
+
+    const logout = () => {
+        mutate();
+        navigate("/login");
+    }
+
     return (
         <nav>
             {showNotificationsModal && <NotificationModal notifications={data} hideNotificModal={hideNotificModal} />}
@@ -64,7 +75,7 @@ function Navbar() {
                 <li><button type="button" onClick={() => navigate("/chat")}><AiOutlineWechat className="navIcon" /></button></li>
                 <li>
                     <button type="button" onClick={handleAvatarClick}><FaUserAlt className="navIcon" /></button>
-                    {avatarClicked && <LogoutModal />}
+                    {avatarClicked && <LogoutModal visitProfile={visitProfile} logout={logout} />}
                 </li>
                 <li><button type="button" onClick={() => navigate("/home")}><AiFillHome className="navIcon" /></button></li>
             </ul>
