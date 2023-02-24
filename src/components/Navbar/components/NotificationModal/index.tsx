@@ -8,9 +8,10 @@ import Notification from "./components/Notification";
 type notificationModalTypes = {
     notifications: notification[],
     hideNotificModal: () => void,
+    refetchNotifications: () => void,
 }
 
-function NotificationModal({notifications, hideNotificModal}: notificationModalTypes) {
+function NotificationModal({notifications, hideNotificModal, refetchNotifications}: notificationModalTypes) {
 
     const {mutateAsync} = useReadNotification();
 
@@ -25,6 +26,7 @@ function NotificationModal({notifications, hideNotificModal}: notificationModalT
     const openNotification = async(notificMsg: string, notificID: number, isRead: number) => {
         setNotificText(notificMsg);
         await mutateAsync({notificID: notificID, isRead: isRead});
+        refetchNotifications();
     }
 
     return (

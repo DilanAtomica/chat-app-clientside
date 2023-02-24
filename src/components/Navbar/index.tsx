@@ -14,7 +14,7 @@ function Navbar() {
 
     const navigate = useNavigate();
 
-    const {data} = useNotifications();
+    const {data, refetch: refetchNotifications} = useNotifications();
     const {mutateAsync} = useLogout();
 
     const [unReadNotifics, setUnReadNotifics] = useState<number>(0)
@@ -63,7 +63,8 @@ function Navbar() {
 
     return (
         <nav>
-            {showNotificationsModal && <NotificationModal notifications={data} hideNotificModal={hideNotificModal} />}
+            {showNotificationsModal && <NotificationModal notifications={data} hideNotificModal={hideNotificModal}
+                                       refetchNotifications={refetchNotifications}/>}
             <button type="button"><img onClick={() => navigate("/home")} alt="logo" src={Logo} /></button>
             <ul>
                 <li>
