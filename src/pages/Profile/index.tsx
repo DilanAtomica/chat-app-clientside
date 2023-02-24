@@ -17,12 +17,12 @@ type seriesType = {
 
 function ProfilePage() {
 
-    const {data, isFetching} = useActiveChatQueues();
-    const {mutate} = useDeleteChatQueue();
+    const {data, isFetching, refetch} = useActiveChatQueues();
+    const {mutateAsync} = useDeleteChatQueue();
 
-    const deleteQueuedSeries = (chatQueueID: number) => {
-        mutate(chatQueueID);
-        window.location.reload();
+    const deleteQueuedSeries = async(chatQueueID: number) => {
+        await mutateAsync(chatQueueID);
+        refetch();
     }
 
     return (

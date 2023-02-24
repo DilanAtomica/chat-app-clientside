@@ -29,9 +29,7 @@ const MockSearchedPage = () => {
     });
 
 test("Renders poster with image and name and renders series modal after click", async() => {
-
     const user = userEvent.setup();
-
     render(<MockSearchedPage />);
         const imgPoster = await screen.findByAltText("Game of Thrones");
         expect(imgPoster).toBeInTheDocument();

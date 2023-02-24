@@ -15,7 +15,7 @@ function Navbar() {
     const navigate = useNavigate();
 
     const {data} = useNotifications();
-    const {mutate} = useLogout();
+    const {mutateAsync} = useLogout();
 
     const [unReadNotifics, setUnReadNotifics] = useState<number>(0)
 
@@ -56,8 +56,8 @@ function Navbar() {
         navigate("/profile");
     }
 
-    const logout = () => {
-        mutate();
+    const logout = async() => {
+       await mutateAsync();
         navigate("/login");
     }
 

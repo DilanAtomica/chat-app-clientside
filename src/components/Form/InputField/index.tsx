@@ -10,7 +10,7 @@ type inputFieldProps = {
     setShowPassword?: (showPassword: boolean) => void,
     errorMsg: string | undefined,
     obligated: boolean,
-    register: any
+    register: any,
 }
 
 function InputField({label, showPassword, setShowPassword, errorMsg, register, obligated}: inputFieldProps) {

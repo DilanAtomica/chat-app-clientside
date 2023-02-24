@@ -5,7 +5,6 @@ import {useChatQueue, useSeriesResult} from "./hooks/api"
 import useSeriesModal from "../../../../stores/SeriesModal";
 import Button from "../../../../components/Form/Button";
 import LoadingScreen from "../../../../components/LoadingScreen";
-import { v4 as uuidv4 } from 'uuid';
 import {GoAlert} from "react-icons/go";
 import {useNavigate} from "react-router-dom";
 
@@ -18,7 +17,7 @@ function SeriesModal() {
 
     const navigate = useNavigate();
     const seriesModal = useSeriesModal();
-    const {mutate, isError, error} = useChatQueue();
+    const {mutateAsync: queueSeries, isError, error} = useChatQueue();
     const {data, isFetching} = useSeriesResult(seriesModal.seriesID);
     const [errorMsg, setErrorMsg] = useState<string>("");
 
@@ -58,7 +57,8 @@ function SeriesModal() {
         e.preventDefault();
         try {
             if((season && episodeInput))  {
-                await mutate({seriesID: data?.id, season: season, episode: parseInt(episodeInput)});
+                await queueSeries({seriesID: data?.id, season: season, episode: parseInt(episodeInput)});
+                seriesModal.deActivateSeriesModal();
                 navigate("/profile");
             }
         } catch(error: any) {

@@ -13,41 +13,42 @@ import ChatsModal from "./components/ChatsModal";
 
 function ChatPage() {
 
-    const {data, isFetching: isFetchingActiveChats} = useChats();
+    const {data, isFetching: isFetchingActiveChats, refetch: refetchChats} = useChats();
     const [currentChatID, setCurrentChatID] = useState<null | number>(null);
     const {data: currentChatData, refetch, isFetching: isFetchingCurrentChat} = useChat(currentChatID);
-    const {mutate} = useMessage();
-    const {mutate: leaveChatMutation} = useLeaveChat();
+    const {mutateAsync: sendMsg} = useMessage();
+    const {mutateAsync: leaveChatMutation} = useLeaveChat();
 
     const {screenWidth} = useScreenWidth();
 
-    const [trigger, setTrigger] = useState<boolean>(false);
     const [inputValue, setInputValue] = useState<string>("");
     const [showChatsModal, setShowChatsModal] = useState<boolean>(false);
 
     useEffect(() => {
         if(currentChatID) refetch();
-    }, [currentChatID, trigger]);
+    }, [currentChatID]);
 
     const openChat = (chatID: number) => {
         setCurrentChatID(chatID);
         setShowChatsModal(false);
     }
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if(currentChatID) {
-            mutate({chatID: currentChatID, text: inputValue});
+            await sendMsg({chatID: currentChatID, text: inputValue});
             setInputValue("");
-            setTrigger(!trigger);
+            refetch();
         }
     }
 
     const hideChatsModal = () => setShowChatsModal(false);
 
-    const leaveChat = () => {
-        leaveChatMutation(currentChatID);
+    const leaveChat = async() => {
+       await leaveChatMutation(currentChatID);
+        setCurrentChatID(null);
         refetch();
+        refetchChats();
     }
 
 

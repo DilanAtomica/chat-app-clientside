@@ -3,10 +3,6 @@ import "./index.css";
 import {chatType} from "../../types";
 import ActiveChat from "../ActiveChat";
 
-type chatsModalProps = {
-    chats: chatType,
-}
-
 function ChatsModal({chats, openChat, hideChatsModal}: any) {
 
     const onBackgroundClick = (e: React.MouseEvent<HTMLElement>) => {

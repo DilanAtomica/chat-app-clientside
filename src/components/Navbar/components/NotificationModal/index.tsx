@@ -12,7 +12,7 @@ type notificationModalTypes = {
 
 function NotificationModal({notifications, hideNotificModal}: notificationModalTypes) {
 
-    const {mutate} = useReadNotification();
+    const {mutateAsync} = useReadNotification();
 
     const [notificText, setNotificText] = useState<null | string>(null);
 
@@ -22,9 +22,9 @@ function NotificationModal({notifications, hideNotificModal}: notificationModalT
         }
     };
 
-    const openNotification = (notificMsg: string, notificID: number, isRead: number) => {
+    const openNotification = async(notificMsg: string, notificID: number, isRead: number) => {
         setNotificText(notificMsg);
-        mutate({notificID: notificID, isRead: isRead});
+        await mutateAsync({notificID: notificID, isRead: isRead});
     }
 
     return (
