@@ -1,14 +1,18 @@
 import React, {MouseEventHandler, ReactNode} from 'react';
 import "./index.css";
 
-type buttonProps = {
+type buttonProps =  | ({
+    buttonType: "submit",
+    onClick?: never,
+} | {
+    buttonType: "button",
+    onClick: MouseEventHandler<HTMLButtonElement>,
+}) & {
     children: ReactNode,
-    buttonType: "button" | "submit",
     disabled: boolean,
     width: string,
     margin?: string,
-    onClick?: MouseEventHandler<HTMLButtonElement>,
-}
+};
 
 function Button({children, buttonType, disabled, width, margin, onClick} : buttonProps) {
     return (

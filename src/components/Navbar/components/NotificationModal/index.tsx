@@ -4,6 +4,7 @@ import {notification} from "../../types";
 import {BsArrowLeft} from "react-icons/bs";
 import {useReadNotification} from "../../hooks/api";
 import Notification from "./components/Notification";
+import Button from "../../../Form/Button";
 
 type notificationModalTypes = {
     notifications: notification[],
@@ -46,6 +47,7 @@ function NotificationModal({notifications, hideNotificModal, refetchNotification
                 </ul>
                 : <p role="notificMsg">{notificText}</p>
                 }
+                <Button onClick={() => hideNotificModal()} buttonType={"button"} disabled={false} width={"max-content"}>Close</Button>
 
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Routes} from "react-router-dom";
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 import PublicRoutes from "./PublicRoutes";
 import ProtectedRoutes from "./ProtectedRoutes";
 
@@ -11,19 +11,26 @@ const Profile = React.lazy(() => import("../pages/Profile"));
 const Chat = React.lazy(() => import("../pages/Chat"));
 
 function AppRoutes() {
+
+    const router = createBrowserRouter(
+        createRoutesFromElements(
+            <Route errorElement={<h1>There is nothing to see here...</h1>}>
+                <Route element={<PublicRoutes/>}>
+                    <Route element={<><Login/></>} path="/login"/>
+                    <Route element={<> <Register/> </>} path="/register"/>
+                </Route>
+                <Route element={<ProtectedRoutes/>}>
+                    <Route element={<><Home/></>} path="/home"/>
+                    <Route element={<><Searched/></>} path="/search/:searchWord/:page"/>
+                    <Route element={<><Profile/></>} path="/profile"/>
+                    <Route element={<><Chat/></>} path="/chat"/>
+                </Route>
+            </Route>
+        )
+    )
+
     return (
-        <Routes>
-            <Route element={<PublicRoutes/>}>
-                <Route element={<><Login/></>} path="/login"/>
-                <Route element={<> <Register/> </>} path="/register"/>
-            </Route>
-            <Route element={<ProtectedRoutes/>}>
-                <Route element={<><Home/></>} path="/home"/>
-                <Route element={<><Searched/></>} path="/search/:searchWord/:page"/>
-                <Route element={<><Profile/></>} path="/profile"/>
-                <Route element={<><Chat/></>} path="/chat"/>
-            </Route>
-        </Routes>
+        <RouterProvider router={router} />
     );
 }
 

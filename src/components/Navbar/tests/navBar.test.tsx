@@ -33,8 +33,8 @@ test("Should show notifications that are new and not read", async() => {
 
     //Checks that notifications shows date
     const notificDates = await screen.findAllByRole("notificDate");
-    expect(notificDates[0]).toHaveTextContent("1 February 2023");
-    expect(notificDates[1]).toHaveTextContent("2 February 2023");
+    expect(notificDates[0]).toHaveTextContent("13 February 2023");
+    expect(notificDates[1]).toHaveTextContent("14 February 2023");
 
     //Clicks notification and checks that message shows
     await user.click(notifications[0]);

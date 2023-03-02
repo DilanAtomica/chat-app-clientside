@@ -28,7 +28,7 @@ function SearchedPage() {
         console.log("Useffect: SearchedPage");
     }, [data]);
 
-    const getPages = (page: string) => {
+    const getPages = (page: string): number[] => {
         const currentPage = parseInt(page);
         let pages: number[] = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2, + currentPage +3];
         pages = pages.filter(page => page > 0);
@@ -72,7 +72,7 @@ function SearchedPage() {
                 {pages && page && parseInt(page) !== 1 &&
                     <li><button onClick={onNextPrevClick} type="button" id="prevBtn" className="backForthBtn">Prev</button></li>}
 
-                {pages && pages.map(pageIndex => (
+                {(pages && data?.results.length !== 0) && pages.map(pageIndex => (
                     <li key={pageIndex}><button onClick={onPageClick} style={{backgroundColor: page && pageIndex === parseInt(page) ? "black" : "#0F62FE"}}
                                 type="button" className="pageNumber">{pageIndex}</button></li>
 
@@ -84,6 +84,7 @@ function SearchedPage() {
                 {data?.results.map((movie: { id: number, name: string, poster_path: string }) => (
                     <Poster key={movie.id} id={movie.id} poster={movie.poster_path} name={movie.name} />
                 ))}
+                {data?.results.length === 0 && <h2>No movies were found matching: {searchWord}</h2>}
             </ul>
         </main>
     );

@@ -32,7 +32,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0F62FE;
+    background-color: rgb(15, 98, 254);
     color: white;
     transition: 0.2s;
     margin-right: 0.5rem;
@@ -43,7 +43,7 @@
     width: max-content;
     height: max-content;
     padding: 0.25rem 0.75rem;
-    background-color: #0F62FE;
+    background-color: rgb(15, 98, 254);
     color: white;
     margin-right: 0.5rem;
     display: flex;

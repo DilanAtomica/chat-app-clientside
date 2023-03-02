@@ -36,7 +36,7 @@ test('Log in and queue up for a series and then delete it', async ({ page }) => 
   await page.getByRole('listitem').filter({ hasText: 'Game of ThronesSeason 5Episode 3' }).getByRole('button').click();
 });
 
-test('Log in and queue up for a series, start a chat, send message and leave chat', async ({ page }) => {
+test.only('Log in and queue up for a series, start a chat, send message and leave chat', async ({ page }) => {
   await page.goto('http://localhost:3000/login');
 
   await page.getByPlaceholder('example@domain.com').click();
@@ -60,6 +60,8 @@ test('Log in and queue up for a series, start a chat, send message and leave cha
 
   await page.getByRole('list').getByRole('button').nth(2).click();
   await page.getByRole('button', { name: 'Log out' }).click();
+
+
   await expect(page).toHaveURL("http://localhost:3000/login");
 
   //Repeat action with user 2
@@ -98,14 +100,14 @@ test('Log in and queue up for a series, start a chat, send message and leave cha
   //Check notification
   await expect(page).toHaveURL("http://localhost:3000/home");
   await page.getByRole('listitem').filter({ hasText: '1' }).getByRole('button').click();
-  await page.getByRole('button', { name: '4 February 2023' }).click();
+  await page.getByRole('button', { name: '27 February 2023' }).click();
   await page.getByRole('button', { name: 'Go back' }).click();
-  await page.locator('div').filter({ hasText: 'Notifications4 February 2023' }).nth(2).click();
+  await page.getByRole('button', { name: 'Close' }).click();
 
   //Go to chat
   await page.getByRole('list').getByRole('button').nth(1).click();
   await expect(page).toHaveURL("http://localhost:3000/chat");
-  await page.getByRole('button', { name: 'Breaking Bad Breaking Bad Season 1 · Episode 1 Chatting with dilan' }).click();
+  await page.getByRole('button', { name: 'Game of Thrones Game of Thrones Season 5 · Episode 3 Chatting with vidar' }).click();
   await page.getByPlaceholder('Send a message...').click();
   await page.getByPlaceholder('Send a message...').fill('Hei på deg du!');
   await page.getByRole('button', { name: 'Send' }).click();

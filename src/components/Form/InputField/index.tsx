@@ -4,10 +4,15 @@ import {AiFillUnlock} from "react-icons/ai";
 import {GoAlert} from "react-icons/go";
 import {BsFillPersonFill} from "react-icons/bs";
 
-type inputFieldProps = {
-    label: "Email" | "Password" | "Confirm Password" | "Username",
-    showPassword?: boolean,
-    setShowPassword?: (showPassword: boolean) => void,
+type inputFieldProps = | ({
+    label: "Email" | "Username",
+    showPassword?: never,
+    setShowPassword?: never,
+} | {
+    label: "Password" | "Confirm Password",
+    showPassword: boolean,
+    setShowPassword: (showPassword: boolean) => void,
+}) & {
     errorMsg: string | undefined,
     obligated: boolean,
     register: any,

@@ -15,7 +15,7 @@ function Navbar() {
     const navigate = useNavigate();
 
     const {data, refetch: refetchNotifications} = useNotifications();
-    const {mutateAsync} = useLogout();
+    const {mutateAsync: logoutUser} = useLogout();
 
     const [unReadNotifics, setUnReadNotifics] = useState<number>(0)
 
@@ -57,7 +57,7 @@ function Navbar() {
     }
 
     const logout = async() => {
-       await mutateAsync();
+       await logoutUser();
         navigate("/login");
     }
 

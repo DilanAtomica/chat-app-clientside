@@ -44,7 +44,7 @@ export const getWrittenDate = (date: Date) => {
             month = "December"
             break;
     }
-    return formatDate.getDay() + " " + month + " " + formatDate.getFullYear();
+    return formatDate.getDate() + " " + month + " " + formatDate.getFullYear();
 }
 
 export const getWrittenDateShorted = (date: Date) => {

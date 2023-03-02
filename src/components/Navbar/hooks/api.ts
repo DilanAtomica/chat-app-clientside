@@ -3,9 +3,7 @@ import axios from "axios";
 import {openNotificTypes} from "../types";
 
 const notifications = async() => {
-        const notificationsData = await axios.post("http://localhost:3001/chats/notifications",{}, {
-            withCredentials: true
-        });
+        const notificationsData = await axios.post("http://localhost:3001/chats/notifications",{}, {withCredentials: true});
         console.log(notificationsData.data);
         return notificationsData.data;
 }

@@ -16,7 +16,7 @@ const MockChatPage = () => {
     )
 };
 
-test("Should shoe chats and click on one to open chat modal", async() => {
+test("Should show chats and click on one to open chat modal", async() => {
     const user = userEvent.setup();
     render(<MockChatPage />);
 

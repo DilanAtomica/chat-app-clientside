@@ -13,9 +13,7 @@ function AppProvider({children}:appProps) {
         <div className="App">
             <Suspense fallback={<LoadingScreen/>}>
                 <QueryClientProvider client={client}>
-                    <BrowserRouter>
                         {children}
-                    </BrowserRouter>
                 </QueryClientProvider>
             </Suspense>
         </div>
