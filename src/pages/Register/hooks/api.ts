@@ -10,7 +10,7 @@ type registerUserInputsTypes = {
 
 
 const registerUser = (registerUserInputs: registerUserInputsTypes) => {
-    return axios.post(process.env.API_URL + "/users/registerUser", registerUserInputs, {withCredentials: true})
+    return axios.post(import.meta.env.VITE_REACT_API_URL + "/users/registerUser", registerUserInputs, {withCredentials: true})
 }
 
 export const useRegister = () => {

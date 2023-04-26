@@ -7,7 +7,7 @@ type loginInputs = {
 };
 
 const login = (inputData: loginInputs) => {
-    return axios.post(process.env.API_URL + '/users/login', inputData, {withCredentials: true});
+    return axios.post(import.meta.env.VITE_REACT_API_URL + '/users/login', inputData, {withCredentials: true});
 };
 
 export const useLogin = () => {

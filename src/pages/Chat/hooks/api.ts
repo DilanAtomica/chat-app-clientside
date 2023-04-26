@@ -3,7 +3,7 @@ import axios from "axios";
 import {sendMessageType} from "../types";
 
 const chats = async() => {
-        const chatsData = await axios.post("http://localhost:3001/chats/chatsData",{}, {
+        const chatsData = await axios.post(import.meta.env.VITE_REACT_API_URL + "/chats/chatsData",{}, {
             withCredentials: true
         });
         console.log(chatsData.data);
@@ -15,7 +15,7 @@ export const useChats = () => {
 
 const chat = async(chatID: number | null) => {
         if(chatID) {
-            const chatData = await axios.post(process.env.API_URL + "/chats/chatData",{chatID}, {
+            const chatData = await axios.post(import.meta.env.VITE_REACT_API_URL + "/chats/chatData",{chatID}, {
                 withCredentials: true
             });
             console.log(chatData.data);
@@ -28,14 +28,14 @@ export const useChat = (chatID: number | null) => {
 
 
 const message = async(messageData: sendMessageType) => {
-    return await axios.post(process.env.API_URL + "/chats/message",{messageData}, {withCredentials: true});
+    return await axios.post(import.meta.env.VITE_REACT_API_URL + "/chats/message",{messageData}, {withCredentials: true});
 }
 export const useMessage = () => {
     return useMutation(["messageMutation"], (messageData: sendMessageType) => message(messageData));
 }
 
 const leaveChat = async(chatID: number | null) => {
-    return await axios.post(process.env.API_URL + "/chats/leaveChat",{chatID}, {withCredentials: true});
+    return await axios.post(import.meta.env.VITE_REACT_API_URL + "/chats/leaveChat",{chatID}, {withCredentials: true});
 
 }
 export const useLeaveChat = () => {

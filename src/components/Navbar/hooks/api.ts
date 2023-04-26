@@ -3,7 +3,7 @@ import axios from "axios";
 import {openNotificTypes} from "../types";
 
 const notifications = async() => {
-        const notificationsData = await axios.post(process.env.API_URL + "/chats/notifications",{}, {withCredentials: true});
+        const notificationsData = await axios.post(import.meta.env.VITE_REACT_API_URL + "/chats/notifications",{}, {withCredentials: true});
         console.log(notificationsData.data);
         return notificationsData.data;
 }
@@ -12,7 +12,7 @@ export const useNotifications = () => {
 }
 
 const readNotification = async(openNotificData: openNotificTypes) => {
-        return await axios.post(process.env.API_URL + "/chats/readNotification",{openNotificData}, {withCredentials: true});
+        return await axios.post(import.meta.env.VITE_REACT_API_URL + "/chats/readNotification",{openNotificData}, {withCredentials: true});
 }
 
 export const useReadNotification = () => {
@@ -20,7 +20,7 @@ export const useReadNotification = () => {
 }
 
 const logout = async() => {
-        return await axios.post(process.env.API_URL + "/users/logout",{}, {withCredentials: true});
+        return await axios.post(import.meta.env.VITE_REACT_API_URL + "/users/logout",{}, {withCredentials: true});
 }
 
 export const useLogout = () => {
