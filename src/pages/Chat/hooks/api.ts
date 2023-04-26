@@ -15,7 +15,7 @@ export const useChats = () => {
 
 const chat = async(chatID: number | null) => {
         if(chatID) {
-            const chatData = await axios.post("http://localhost:3001/chats/chatData",{chatID}, {
+            const chatData = await axios.post(process.env.API_URL + "/chats/chatData",{chatID}, {
                 withCredentials: true
             });
             console.log(chatData.data);
@@ -28,14 +28,14 @@ export const useChat = (chatID: number | null) => {
 
 
 const message = async(messageData: sendMessageType) => {
-    return await axios.post("http://localhost:3001/chats/message",{messageData}, {withCredentials: true});
+    return await axios.post(process.env.API_URL + "/chats/message",{messageData}, {withCredentials: true});
 }
 export const useMessage = () => {
     return useMutation(["messageMutation"], (messageData: sendMessageType) => message(messageData));
 }
 
 const leaveChat = async(chatID: number | null) => {
-    return await axios.post("http://localhost:3001/chats/leaveChat",{chatID}, {withCredentials: true});
+    return await axios.post(process.env.API_URL + "/chats/leaveChat",{chatID}, {withCredentials: true});
 
 }
 export const useLeaveChat = () => {

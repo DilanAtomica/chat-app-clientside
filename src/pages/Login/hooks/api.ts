@@ -7,7 +7,7 @@ type loginInputs = {
 };
 
 const login = (inputData: loginInputs) => {
-    return axios.post('http://localhost:3001/users/login', inputData, {withCredentials: true});
+    return axios.post(process.env.API_URL + '/users/login', inputData, {withCredentials: true});
 };
 
 export const useLogin = () => {

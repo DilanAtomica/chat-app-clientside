@@ -90,7 +90,6 @@ function SeriesModal() {
                             ))}
                         </select>
 
-
                         <label htmlFor="episodes">Choose an episode:</label>
                         <select defaultValue={"Episode"} disabled={season === null} onChange={(e) => setEpisodeInput(e.target.value)} name="episodes" id="episodes">
                             <option value="Episode" disabled={true}>Episode</option>
@@ -108,7 +107,6 @@ function SeriesModal() {
                     </form>
                 </div>
             </div>
-
         </div>
     );
 }
