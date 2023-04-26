@@ -5,14 +5,21 @@ export default {
     component: InputField,
 }
 
-type inputFieldProps = {
-    label: "Email" | "Password" | "Confirm Password" | "Username",
-    showPassword?: boolean,
-    setShowPassword?: (showPassword: boolean) => void,
+type inputFieldProps = | ({
+    label: "Email" | "Username",
+    showPassword?: never,
+    setShowPassword?: never,
+} | {
+    label: "Password" | "Confirm Password",
+    showPassword: boolean,
+    setShowPassword: (showPassword: boolean) => void,
+}) & {
     errorMsg: string | undefined,
+    obligated: boolean,
+    register: any,
 }
 
-const Template = (args: inputFieldProps) => <InputField obligated={true} register={() => console.log("")} {...args} />
+const Template = (args: inputFieldProps) => <InputField {...args} />
 
 export const EmailInput = Template.bind({});
 // @ts-ignore

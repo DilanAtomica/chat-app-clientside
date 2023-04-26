@@ -1,17 +1,23 @@
 import Button from "./index";
-import {ReactNode} from "react";
+import {MouseEventHandler, ReactNode} from "react";
 
 export default {
     title: "Button",
     component: Button,
 }
 
-type buttonProps = {
-    children: ReactNode;
-    buttonType: "button" | "submit";
+type buttonProps =  | ({
+    buttonType: "submit",
+    onClick?: never,
+} | {
+    buttonType: "button",
+    onClick: MouseEventHandler<HTMLButtonElement>,
+}) & {
+    children: ReactNode,
     disabled: boolean,
     width: string,
-}
+    margin?: string,
+};
 
 const Template = (args: buttonProps) => <Button {...args}>{args.children}</Button>
 
