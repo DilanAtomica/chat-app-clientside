@@ -1,5 +1,5 @@
 import React from 'react';
-import {createHashRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 import PublicRoutes from "./PublicRoutes";
 import ProtectedRoutes from "./ProtectedRoutes";
 
@@ -12,7 +12,7 @@ const Chat = React.lazy(() => import("../pages/Chat"));
 
 function AppRoutes() {
 
-    const router = createHashRouter(
+    const router = createBrowserRouter(
         createRoutesFromElements(
             <Route errorElement={<h1>There is nothing to see here...</h1>}>
                 <Route element={<PublicRoutes/>}>
