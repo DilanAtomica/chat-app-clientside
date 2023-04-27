@@ -3,7 +3,7 @@ import axios from "axios";
 
 const seriesResult = async(seriesID: number | null) => {
     try {
-        const seriesResultData = await axios.post("http://localhost:3001/shows/seriesResult",{seriesID}, {
+        const seriesResultData = await axios.post(import.meta.env.VITE_REACT_API_URL + "/shows/seriesResult",{seriesID}, {
             withCredentials: true
         });
         console.log(seriesResultData.data);
@@ -24,7 +24,7 @@ type chatQueueInputs = {
 };
 
 const chatQueue = (inputData: chatQueueInputs) => {
-    return axios.post('http://localhost:3001/chats/chatQueue', inputData, {withCredentials: true});
+    return axios.post( import.meta.env.VITE_REACT_API_URL +'/chats/chatQueue', inputData, {withCredentials: true});
 };
 
 export const useChatQueue = () => {
