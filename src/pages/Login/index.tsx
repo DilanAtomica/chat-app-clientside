@@ -52,7 +52,7 @@ function Login() {
         <main className="login">
             <Background />
             <form onSubmit={handleSubmit(validateInputs)}>
-                <h1>Login</h1>
+                <h1>Login {import.meta.env.VITE_REACT_API_URL}</h1>
                 <p>*Required field</p>
 
                 <InputField obligated={true} label={"Email"} errorMsg={errors.email?.message} register={register} />
