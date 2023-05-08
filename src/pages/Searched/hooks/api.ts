@@ -2,8 +2,12 @@ import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
 
 const searchResult = async(searchWord: string | undefined, page: string | undefined) => {
-        const searchResultData = await axios.post(import.meta.env.VITE_REACT_API_URL + "/shows/searchResult",{searchWord, page}, {
-            withCredentials: true
+        const searchResultData = await axios.get(import.meta.env.VITE_REACT_API_URL + "/shows/searchResult", {
+            withCredentials: true,
+            params: {
+                searchWord: searchWord,
+                page: page,
+            }
         });
         console.log(searchResultData.data);
         return searchResultData.data;

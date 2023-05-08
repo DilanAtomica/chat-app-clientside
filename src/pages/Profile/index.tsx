@@ -36,6 +36,7 @@ function ProfilePage() {
                                    image={series.image} season={series.season} episode={series.episode} created_at={series.created_at}
                                    deleteQueuedSeries={deleteQueuedSeries} />
                 ))}
+                {data.length === 0 && <p>You are not queued up for anything at the moment</p>}
             </ul>
         </div>
     );

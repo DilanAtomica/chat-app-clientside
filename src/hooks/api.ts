@@ -2,7 +2,7 @@ import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
 
 const authUser = async() => {
-        const tokenData = await axios.post(import.meta.env.VITE_REACT_API_URL + "/users/auth",{}, {
+        const tokenData = await axios.get(import.meta.env.VITE_REACT_API_URL + "/users/auth", {
             withCredentials: true
         });
         console.log(tokenData.data);
@@ -14,7 +14,7 @@ export const useAuthUser = () => {
 }
 
 const userDetails = async() => {
-        const userDetailsData = await axios.post(import.meta.env.VITE_REACT_API_URL + "/users/userDetails",{}, {
+        const userDetailsData = await axios.get(import.meta.env.VITE_REACT_API_URL + "/users/userDetails", {
             withCredentials: true
         });
         console.log(userDetailsData.data);

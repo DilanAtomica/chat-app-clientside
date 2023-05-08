@@ -1,17 +1,17 @@
 import {rest} from "msw";
 
 export const handlers = [
-    rest.post("http://localhost:3001/users/auth", (req, res, ctx) => {
+    rest.get("http://localhost:3001/users/auth", (req, res, ctx) => {
         return res(
             ctx.json({authenticated: true})
         )
     }),
-    rest.post("http://localhost:3001/users/userDetails", (req, res, ctx) => {
+    rest.get("http://localhost:3001/users/userDetails", (req, res, ctx) => {
         return res(
             ctx.json({userID: 1, email: "dilan@hotmail.com", username: "dilan"})
         )
     }),
-    rest.post("http://localhost:3001/shows/searchResult", (req, res, ctx) => {
+    rest.get("http://localhost:3001/shows/searchResult", (req, res, ctx) => {
         return res(
             ctx.json({total_pages: 10, results: [
                     {
@@ -22,7 +22,7 @@ export const handlers = [
                 ]})
         )
     }),
-    rest.post("http://localhost:3001/shows/seriesResult", (req, res, ctx) => {
+    rest.get("http://localhost:3001/shows/seriesResult", (req, res, ctx) => {
         return res(
             ctx.json({
                 id: 1399,
@@ -54,7 +54,7 @@ export const handlers = [
             })
         )
     }),
-    rest.post("http://localhost:3001/chats/activeChatQueues", (req, res, ctx) => {
+    rest.get("http://localhost:3001/chats/activeChatQueues", (req, res, ctx) => {
         return res(
             ctx.json([{
                 chatQueueID: 22,
@@ -67,7 +67,7 @@ export const handlers = [
             }])
         )
     }),
-    rest.post("http://localhost:3001/chats/notifications", (req, res, ctx) => {
+    rest.get("http://localhost:3001/chats/notifications", (req, res, ctx) => {
         return res(
             ctx.json([
                 {
@@ -88,7 +88,7 @@ export const handlers = [
         )
     }),
 
-    rest.post("http://localhost:3001/chats/chatsData", (req, res, ctx) => {
+    rest.get("http://localhost:3001/chats/chatsData", (req, res, ctx) => {
         return res(
             ctx.json([
                 {
@@ -113,7 +113,7 @@ export const handlers = [
         )
     }),
 
-    rest.post("http://localhost:3001/chats/chatData", (req, res, ctx) => {
+    rest.get("http://localhost:3001/chats/chatData", (req, res, ctx) => {
         return res(
             ctx.json(
                 {

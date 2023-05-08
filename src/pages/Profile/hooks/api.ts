@@ -2,7 +2,7 @@ import {useMutation, useQuery} from "@tanstack/react-query";
 import axios from "axios";
 
 const activeChatQueues = async() => {
-        const activeChatQueuesData = await axios.post(import.meta.env.VITE_REACT_API_URL + "/chats/activeChatQueues", {}, {
+        const activeChatQueuesData = await axios.get(import.meta.env.VITE_REACT_API_URL + "/chats/activeChatQueues", {
             withCredentials: true
         });
         if(activeChatQueuesData) {
@@ -17,7 +17,12 @@ export const useActiveChatQueues = () => {
 
 
 const deleteChatQueue = (chatQueueID: number) => {
-    return axios.post(import.meta.env.VITE_REACT_API_URL + "/chats/deleteChatQueue", {chatQueueID}, {withCredentials: true});
+    return axios.delete(import.meta.env.VITE_REACT_API_URL + "/chats/deleteChatQueue", {
+        withCredentials: true,
+        params: {
+            chatQueueID: chatQueueID,
+        }
+    });
 };
 
 export const useDeleteChatQueue = () => {

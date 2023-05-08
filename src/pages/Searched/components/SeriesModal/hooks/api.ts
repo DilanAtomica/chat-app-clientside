@@ -3,8 +3,11 @@ import axios from "axios";
 
 const seriesResult = async(seriesID: number | null) => {
     try {
-        const seriesResultData = await axios.post(import.meta.env.VITE_REACT_API_URL + "/shows/seriesResult",{seriesID}, {
-            withCredentials: true
+        const seriesResultData = await axios.get(import.meta.env.VITE_REACT_API_URL + "/shows/seriesResult", {
+            withCredentials: true,
+            params: {
+                seriesID: seriesID,
+            }
         });
         console.log(seriesResultData.data);
         return seriesResultData.data;

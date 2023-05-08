@@ -3,7 +3,7 @@ import axios from "axios";
 import {sendMessageType} from "../types";
 
 const chats = async() => {
-        const chatsData = await axios.post(import.meta.env.VITE_REACT_API_URL + "/chats/chatsData",{}, {
+        const chatsData = await axios.get(import.meta.env.VITE_REACT_API_URL + "/chats/chatsData", {
             withCredentials: true
         });
         console.log(chatsData.data);
@@ -15,8 +15,11 @@ export const useChats = () => {
 
 const chat = async(chatID: number | null) => {
         if(chatID) {
-            const chatData = await axios.post(import.meta.env.VITE_REACT_API_URL + "/chats/chatData",{chatID}, {
-                withCredentials: true
+            const chatData = await axios.get(import.meta.env.VITE_REACT_API_URL + "/chats/chatData", {
+                withCredentials: true,
+                params: {
+                    chatID: chatID
+                },
             });
             console.log(chatData.data);
             return chatData.data;
@@ -35,7 +38,12 @@ export const useMessage = () => {
 }
 
 const leaveChat = async(chatID: number | null) => {
-    return await axios.post(import.meta.env.VITE_REACT_API_URL + "/chats/leaveChat",{chatID}, {withCredentials: true});
+    return await axios.delete(import.meta.env.VITE_REACT_API_URL + "/chats/leaveChat", {
+        withCredentials: true,
+        params: {
+            chatID: chatID,
+        }
+    });
 
 }
 export const useLeaveChat = () => {
