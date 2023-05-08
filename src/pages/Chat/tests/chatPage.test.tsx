@@ -1,5 +1,5 @@
 import React from "react";
-import {findByRole, render, screen, waitFor} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import {BrowserRouter} from "react-router-dom";
 import {client} from "../../../lib/react-query";
 import {QueryClientProvider} from "@tanstack/react-query";
