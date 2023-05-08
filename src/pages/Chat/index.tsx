@@ -38,7 +38,7 @@ function ChatPage() {
         if(currentChatID) {
             await sendMsg({chatID: currentChatID, text: inputValue});
             setInputValue("");
-            refetch();
+            await refetch();
         }
     }
 
@@ -47,8 +47,8 @@ function ChatPage() {
     const leaveChat = async() => {
        await leaveChatMutation(currentChatID);
         setCurrentChatID(null);
-        refetch();
-        refetchChats();
+        await refetch();
+        await refetchChats();
     }
 
 

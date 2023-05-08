@@ -22,7 +22,7 @@ function ProfilePage() {
 
     const deleteQueuedSeries = async(chatQueueID: number) => {
         await mutateAsync(chatQueueID);
-        refetch();
+        await refetch();
     }
 
     return (

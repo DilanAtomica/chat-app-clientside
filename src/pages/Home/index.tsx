@@ -13,6 +13,10 @@ function HomePage() {
 
     const onSubmit = () => navigate("/search/" + inputValue + "/" + 1);
 
+    const test = () => {
+        document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+
 
     return (
         <main onSubmit={onSubmit} className="homePage">
@@ -22,6 +26,7 @@ function HomePage() {
                 <SearchInput setInputValue={setInputValue} />
                 <Button width={"100%"} buttonType={"submit"} disabled={false}>Search</Button>
             </form>
+            <button onClick={test}>test</button>
         </main>
     );
 }
