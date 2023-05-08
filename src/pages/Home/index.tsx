@@ -14,7 +14,7 @@ function HomePage() {
     const onSubmit = () => navigate("/search/" + inputValue + "/" + 1);
 
     const test = () => {
-        document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=.onrender.com; path=/;";
     }
 
 
