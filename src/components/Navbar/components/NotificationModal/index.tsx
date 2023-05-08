@@ -45,8 +45,11 @@ function NotificationModal({notifications, hideNotificModal, refetchNotification
                                       isRead={notific.isRead} userID={notific.userID} openNotification={openNotification} />
                     ))}
                 </ul>
-                : <p role="notificMsg">{notificText}</p>
+                : <p className="notificMsg" role="notificMsg">{notificText}</p>
                 }
+
+                {notifications.length === 0 && <p>You don't have any notifications</p>}
+
                 <Button onClick={() => hideNotificModal()} buttonType={"button"} disabled={false} width={"max-content"}>Close</Button>
 
             </div>

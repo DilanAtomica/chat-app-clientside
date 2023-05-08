@@ -33,9 +33,7 @@ function Login() {
 
     const handleOnLogin = async(inputData: ValidationSchema) => {
         try {
-            activateLoadingScreen();
             await login(inputData);
-            deActivateLoadingScreen();
             navigate("/home");
         } catch(error: any) {
             if(error.response.data.errorType === "noEmail") {

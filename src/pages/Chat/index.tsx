@@ -69,6 +69,7 @@ function ChatPage() {
                                         created_at={chat.created_at} onClick={() => openChat(chat.chatID)}
                             />
                         ))}
+                        {data === null && <p style={{textAlign: "center"}}>You dont have any active chats</p>}
                     </div>
                 }
 

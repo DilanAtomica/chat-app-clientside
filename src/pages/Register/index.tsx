@@ -28,13 +28,10 @@ function Register() {
 
     const {mutateAsync: registerUser, isLoading} = useRegister();
     const navigate = useNavigate();
-    const {activateLoadingScreen, deActivateLoadingScreen} = useLoadingScreen();
 
     const handleOnRegister = async(inputData: ValidationSchema) => {
         try {
-            activateLoadingScreen();
             await registerUser(inputData);
-            deActivateLoadingScreen();
             navigate("/home");
 
         } catch(error: any) {

@@ -2,6 +2,7 @@ import React from 'react';
 import "./index.css";
 import {BsTrashFill} from "react-icons/bs";
 import seriesType from "../../index";
+import {addImageFallbackPoster} from "../../../../utils/imageFallBack";
 
 type seriesInQueueProps = {
     chatQueueID: number,
@@ -22,7 +23,7 @@ function SeriesInQueue({chatQueueID, name, image, season, episode, deleteQueuedS
 
     return (
         <li key={chatQueueID} className="seriesQueue">
-            <img alt={name} src={"https://image.tmdb.org/t/p/w500" + image} />
+            <img alt={name} onError={addImageFallbackPoster} src={"https://image.tmdb.org/t/p/w500" + image} />
             <div className="seriesQueueRight">
                 <h2>{name}</h2>
                 <h3>Season {season}</h3>

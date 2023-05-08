@@ -5,6 +5,8 @@
     background-color: white;
     border-radius: 15px;
     margin-bottom: 1rem;
+    min-width: 15rem;
+    max-width: 15rem;
 }
 
 .notificationModal > ul > li > button:hover {
