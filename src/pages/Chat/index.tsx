@@ -15,7 +15,7 @@ function ChatPage() {
 
     const {data, isFetching: isFetchingActiveChats, refetch: refetchChats} = useChats();
     const [currentChatID, setCurrentChatID] = useState<null | number>(null);
-    const {data: currentChatData, refetch, isFetching: isFetchingCurrentChat} = useChat(currentChatID);
+    const {data: currentChatData, refetch, isFetching: isFetchingCurrentChat, isLoading: isLoadingCurrentChat} = useChat(currentChatID);
     const {mutateAsync: sendMsg} = useMessage();
     const {mutateAsync: leaveChatMutation} = useLeaveChat();
 
@@ -56,7 +56,7 @@ function ChatPage() {
         <main className="chatPage">
             <Navbar />
             {showChatsModal && <ChatsModal chats={data} openChat={openChat} hideChatsModal={hideChatsModal} />}
-            {(isFetchingCurrentChat || isFetchingActiveChats) && <LoadingScreen />}
+            {isFetchingActiveChats && <LoadingScreen />}
             <div className="chatContainer">
                 {screenWidth > 900 &&
                     <div className="activeChats">
@@ -102,7 +102,7 @@ function ChatPage() {
                         <form onSubmit={onSubmit} className="chatWindowInput">
                             <AiOutlineMessage id="chatBubbleIcon" />
                             <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} type="text" placeholder="Send a message..." />
-                            <Button buttonType={"submit"} disabled={false} width={"max-content"}>Send</Button>
+                            <Button buttonType={"submit"} disabled={isFetchingCurrentChat || isLoadingCurrentChat} width={"max-content"}>Send</Button>
                         </form>}
 
                     {currentChatID && <button onClick={leaveChat} type="button">Leave chat</button>}
