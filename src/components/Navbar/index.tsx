@@ -58,7 +58,7 @@ function Navbar() {
 
     const logout = async() => {
        await logoutUser();
-        navigate("/login");
+        navigate("/");
     }
 
     return (
