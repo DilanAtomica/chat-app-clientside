@@ -57,7 +57,7 @@ function Register() {
                 <InputField obligated={true} label="Confirm Password" errorMsg={errors.confirmPassword?.message} register={register} showPassword={showPassword}
                             setShowPassword={setShowPassword} />
                 <Button width={"15.5rem"} disabled={isLoading} buttonType={"submit"}>Sign Up</Button>
-                <Link to="/login">Already have an account?</Link>
+                <Link to="/">Already have an account?</Link>
             </form>
         </main>
     );

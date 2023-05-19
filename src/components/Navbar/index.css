@@ -39,6 +39,7 @@ nav > ul > li {
 
 nav > ul > li > button {
     background: none;
+    border: none;
     width: max-content;
     display: flex;
     align-items: center;

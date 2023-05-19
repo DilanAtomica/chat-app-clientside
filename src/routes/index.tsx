@@ -16,7 +16,7 @@ function AppRoutes() {
         createRoutesFromElements(
             <Route errorElement={<h1>There is nothing to see here...</h1>}>
                 <Route element={<PublicRoutes/>}>
-                    <Route element={<><Login/></>} path="/login"/>
+                    <Route element={<><Login/></>} path="/"/>
                     <Route element={<> <Register/> </>} path="/register"/>
                 </Route>
                 <Route element={<ProtectedRoutes/>}>
