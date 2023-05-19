@@ -57,9 +57,11 @@ function SeriesModal() {
         e.preventDefault();
         try {
             if((season && episodeInput))  {
-                await queueSeries({seriesID: data?.id, season: season, episode: parseInt(episodeInput)});
+                const test = await queueSeries({seriesID: data?.id, season: season, episode: parseInt(episodeInput)});
                 seriesModal.deActivateSeriesModal();
-                navigate("/profile");
+                console.log(test.data.chatCreated);
+                if(test.data.chatCreated) navigate("/chat");
+                else navigate("/profile");
             }
         } catch(error: any) {
             console.log(error)
